@@ -8,6 +8,9 @@ const Greeting = () => {
                 {state => (
                     <div>
                         {state.greeting}
+                        <br/>
+                        {state.keys.keys.Dev[0].publicKey==="oh"?state.keysHandler('k', state.setValue):""}
+                        {state.keys.keys.Dev[0].publicKey}
                     </div>
                 )}
             </Consumer>

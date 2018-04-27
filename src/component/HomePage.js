@@ -1,16 +1,25 @@
 import React from 'react';
 import Greeting from "./presentation/Greeting";
+import {get} from './reducer/request';
 
-const {Provider, Consumer} = React.createContext("");
+const {Provider, Consumer} = React.createContext();
 
 
 class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
+        this.setValue = this.setValue.bind(this);
         this.state = {
-            greeting: "Hello World"
+            greeting: "Hello World",
+            keysHandler: get,
+            setValue: this.setValue,
+            keys: {keys:{Dev:[{publicKey:"oh"}]}}
         }
+    }
+
+    setValue(value) {
+        this.setState({keys:value});
     }
 
     render() {
