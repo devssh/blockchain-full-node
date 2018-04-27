@@ -1,22 +1,27 @@
 import React from 'react';
+import Greeting from "./presentation/Greeting";
 
 const {Provider, Consumer} = React.createContext("");
 
 
-const HomePage = () => {
-    return (
-        <Provider value={{hi: "hello world"}}>
-            <div>
-                <Consumer>
-                    {value => (
-                        <div>
-                            {value.hi}
-                        </div>
-                    )}
-                </Consumer>
-            </div>
-        </Provider>
-    );
-};
+class HomePage extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            greeting: "Hello World"
+        }
+    }
+
+    render() {
+        return (
+            <Provider value={this.state}>
+                <Greeting/>
+            </Provider>
+        );
+    }
+}
+
+export {Consumer};
 
 export default HomePage;
