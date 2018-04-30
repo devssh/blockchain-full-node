@@ -8,7 +8,7 @@ class RegisterForm extends React.Component {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
         };
 
         this.updateEmail = this.updateEmail.bind(this);
@@ -20,11 +20,10 @@ class RegisterForm extends React.Component {
         request('post', '/register', {
             email: this.state.email,
             password: this.state.password
-        });
-        this.setState({email: ""});
+        }, this.props.state.setRegistration);
         this.setState({password: ""});
-        this.refs.registerEmail.value="";
-        this.refs.registerPassword.value="";
+        this.refs.registerEmail.value = "";
+        this.refs.registerPassword.value = "";
         event.stopPropagation();
         event.preventDefault();
     };
@@ -54,7 +53,8 @@ class RegisterForm extends React.Component {
                             Email
                         </Col>
                         <Col md={3}>
-                            <input type="text" ref={"registerEmail"} onChange={this.updateEmail} placeholder={"john.doe"}/>
+                            <input type="text" ref={"registerEmail"} onChange={this.updateEmail}
+                                   placeholder={"john.doe"}/>
                         </Col>
                         <Col md={1} className={"email-suffix"}>
                             @gmail.com
@@ -65,7 +65,8 @@ class RegisterForm extends React.Component {
                             Password
                         </Col>
                         <Col md={4}>
-                            <input type="password" ref={"registerPassword"} onChange={this.updatePassword} placeholder={"**********"}/>
+                            <input type="password" ref={"registerPassword"} onChange={this.updatePassword}
+                                   placeholder={"**********"}/>
                         </Col>
                     </Row>
                     <Row className={"register-button"}>

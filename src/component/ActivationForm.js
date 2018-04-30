@@ -1,27 +1,25 @@
 import React from 'react';
 import {Col, Grid, Row} from "react-bootstrap";
-import CryptoJS from 'crypto-js';
 import {request} from './reducer/request';
 
-class RegisterForm extends React.Component {
+class ActivationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            activationCode: ""
         };
 
         this.updateEmail = this.updateEmail.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
-        this.login = this.login.bind(this);
+        this.activate = this.activate.bind(this);
     }
 
-    login(event) {
-        request('post', '/login', {
+    activate(event) {
+        request('post', '/complete-registration', {
             email: this.state.email,
-            password: this.state.password
-        }, this.props.state.setLogin);
-        this.setState({password: ""});
+            activationCode: this.state.activationCode
+        }, this.props.state.setSessionToken);
         this.refs.loginEmail.value = "";
         this.refs.loginPassword.value = "";
         event.stopPropagation();
@@ -30,7 +28,7 @@ class RegisterForm extends React.Component {
 
     updateEmail(event) {
         if (event.key === "Enter") {
-            this.login();
+            this.activate();
             event.preventDefault();
         }
         this.setState({email: event.target.value + "@gmail.com"});
@@ -38,10 +36,10 @@ class RegisterForm extends React.Component {
 
     updatePassword(event) {
         if (event.key === "Enter") {
-            this.login();
+            this.activate();
             event.preventDefault();
         }
-        this.setState({password: CryptoJS.SHA3(event.target.value).toString()});
+        this.setState({activationCode: event.target.value.toString()});
     }
 
     render() {
@@ -64,12 +62,12 @@ class RegisterForm extends React.Component {
                             Password
                         </Col>
                         <Col md={4}>
-                            <input type="password" ref={"loginPassword"} onChange={this.updatePassword}
+                            <input type="text" ref={"loginPassword"} onChange={this.updatePassword}
                                    placeholder={"**********"}/>
                         </Col>
                     </Row>
                     <Row className={"login-button"}>
-                        <input type="button" value="Login" onClick={this.login}/>
+                        <input type="button" value="Activate account" onClick={this.activate}/>
                     </Row>
                 </Grid>
 
@@ -78,4 +76,4 @@ class RegisterForm extends React.Component {
     }
 }
 
-export default RegisterForm;
+export default ActivationForm;

@@ -1,36 +1,47 @@
 import React from 'react';
 import HomePage from "./presentation/HomePage";
-import {request} from './reducer/request';
-
-const {Provider, Consumer} = React.createContext();
-
 
 class AppState extends React.Component {
 
     constructor(props) {
         super(props);
         this.setValue = this.setValue.bind(this);
+        this.setRegistration = this.setRegistration.bind(this);
+        this.setLogin = this.setLogin.bind(this);
+        this.setSessionToken = this.setSessionToken.bind(this);
         this.state = {
-            greeting: "Hello World",
-            keysHandler: request,
             setValue: this.setValue,
-            keys: {keys:{Dev:[{publicKey:"oh"}]}}
+            setRegistration: this.setRegistration,
+            setLogin: this.setLogin,
+            setSessionToken: this.setSessionToken,
+            registration: "",
+            login: "",
+            sessionToken: ""
         }
     }
 
     setValue(value) {
-        this.setState({keys:value});
+        this.setState({response: value});
+    }
+
+    setRegistration(value) {
+        this.setState({registration: value});
+    }
+
+    setLogin(value) {
+        this.setState({login: value});
+    }
+
+    setSessionToken(value) {
+        this.setState({sessionToken: value});
     }
 
     render() {
+        console.log("appstate", this.state)
         return (
-            <Provider value={this.state}>
-                <HomePage/>
-            </Provider>
+            <HomePage state={this.state}/>
         );
     }
 }
-
-export {Consumer};
 
 export default AppState;
