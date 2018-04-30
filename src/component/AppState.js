@@ -1,18 +1,18 @@
 import React from 'react';
-import Greeting from "./presentation/Greeting";
-import {get} from './reducer/request';
+import HomePage from "./presentation/HomePage";
+import {request} from './reducer/request';
 
 const {Provider, Consumer} = React.createContext();
 
 
-class HomePage extends React.Component {
+class AppState extends React.Component {
 
     constructor(props) {
         super(props);
         this.setValue = this.setValue.bind(this);
         this.state = {
             greeting: "Hello World",
-            keysHandler: get,
+            keysHandler: request,
             setValue: this.setValue,
             keys: {keys:{Dev:[{publicKey:"oh"}]}}
         }
@@ -25,7 +25,7 @@ class HomePage extends React.Component {
     render() {
         return (
             <Provider value={this.state}>
-                <Greeting/>
+                <HomePage/>
             </Provider>
         );
     }
@@ -33,4 +33,4 @@ class HomePage extends React.Component {
 
 export {Consumer};
 
-export default HomePage;
+export default AppState;

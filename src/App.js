@@ -1,6 +1,6 @@
 import {Switch, BrowserRouter as Router, Route} from 'react-router-dom';
 import React from "react";
-import HomePage from "./component/HomePage";
+import AppState from "./component/AppState";
 
 class App extends React.Component {
 
@@ -9,7 +9,7 @@ class App extends React.Component {
             <Router>
                 <div>
                     <Switch>
-                        <Route component={HomePage} exact path="/"/>
+                        <Route component={AppState} exact path="/"/>
                     </Switch>
                 </div>
             </Router>
