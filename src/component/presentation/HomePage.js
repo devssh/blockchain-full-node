@@ -2,6 +2,7 @@ import React from 'react';
 import {Consumer} from "../AppState";
 import {Col, Grid, Row} from "react-bootstrap";
 import RegisterForm from "../RegisterForm";
+import LoginForm from "../LoginForm";
 
 const HomePage = () => {
     return (
@@ -22,30 +23,7 @@ const HomePage = () => {
                             <Col md={3}>
                             </Col>
                             <Col md={6}>
-                                <form className={"login"}>
-                                    <Grid>
-                                        <Row className={"email"}>
-                                            <Col md={1} className={"email-label"}>
-                                                Email
-                                            </Col>
-                                            <Col md={4}>
-                                                <input type="email" name="email"/>
-                                            </Col>
-                                        </Row>
-                                        <Row className={"password"}>
-                                            <Col md={1}>
-                                                Password
-                                            </Col>
-                                            <Col md={4}>
-                                                <input type="password" name="password"/>
-                                            </Col>
-                                        </Row>
-                                        <Row className={"login-button"}>
-                                            <input type="submit" value="Login"/>
-                                        </Row>
-                                    </Grid>
-
-                                </form>
+                                <LoginForm />
 
                                 <br/>
 

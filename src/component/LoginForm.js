@@ -13,25 +13,25 @@ class RegisterForm extends React.Component {
 
         this.updateEmail = this.updateEmail.bind(this);
         this.updatePassword = this.updatePassword.bind(this);
-        this.register = this.register.bind(this);
+        this.login = this.login.bind(this);
     }
 
-    register(event) {
-        request('post', '/register', {
+    login(event) {
+        request('post', '/login', {
             email: this.state.email,
             password: this.state.password
         });
         this.setState({email: ""});
         this.setState({password: ""});
-        this.refs.registerEmail.value="";
-        this.refs.registerPassword.value="";
+        this.refs.loginEmail.value = "";
+        this.refs.loginPassword.value = "";
         event.stopPropagation();
         event.preventDefault();
     };
 
     updateEmail(event) {
         if (event.key === "Enter") {
-            this.register();
+            this.login();
             event.preventDefault();
         }
         this.setState({email: event.target.value + "@gmail.com"});
@@ -39,7 +39,7 @@ class RegisterForm extends React.Component {
 
     updatePassword(event) {
         if (event.key === "Enter") {
-            this.register();
+            this.login();
             event.preventDefault();
         }
         this.setState({password: CryptoJS.SHA3(event.target.value).toString()});
@@ -47,14 +47,14 @@ class RegisterForm extends React.Component {
 
     render() {
         return (
-            <form className={"register"}>
+            <form className={"login"}>
                 <Grid>
                     <Row className={"email"}>
                         <Col md={1} className={"email-label"}>
                             Email
                         </Col>
                         <Col md={3}>
-                            <input type="text" ref={"registerEmail"} onChange={this.updateEmail} placeholder={"john.doe"}/>
+                            <input type="text" ref={"loginEmail"} onChange={this.updateEmail} placeholder={"jane.doe"}/>
                         </Col>
                         <Col md={1} className={"email-suffix"}>
                             @gmail.com
@@ -65,13 +65,14 @@ class RegisterForm extends React.Component {
                             Password
                         </Col>
                         <Col md={4}>
-                            <input type="password" ref={"registerPassword"} onChange={this.updatePassword} placeholder={"**********"}/>
+                            <input type="password" ref={"loginPassword"} onChange={this.updatePassword} placeholder={"**********"}/>
                         </Col>
                     </Row>
-                    <Row className={"register-button"}>
-                        <input type="button" value="Register" onClick={this.register}/>
+                    <Row className={"login-button"}>
+                        <input type="button" value="Login" onClick={this.login}/>
                     </Row>
                 </Grid>
+
             </form>
         );
     }
