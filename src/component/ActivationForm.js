@@ -20,6 +20,7 @@ class ActivationForm extends React.Component {
             email: this.state.email,
             activationCode: this.state.activationCode
         }, this.props.state.setSessionToken);
+        this.props.state.setEmail(this.state.email);
         this.refs.loginEmail.value = "";
         this.refs.loginPassword.value = "";
         event.stopPropagation();

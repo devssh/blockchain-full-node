@@ -3,6 +3,7 @@ import {Col, Grid, Row} from "react-bootstrap";
 import RegisterForm from "../RegisterForm";
 import LoginForm from "../LoginForm";
 import ActivationForm from "../ActivationForm";
+import BlockExplorer from "../BlockExplorer";
 
 const HomePage = (props) => {
     return (
@@ -17,29 +18,33 @@ const HomePage = (props) => {
                     <Col md={4}>
                     </Col>
                 </Row>
-                <Row className={"row body"}>
-                    <Col md={3}>
-                    </Col>
-                    <Col md={6}>
-                        {props.state.login.activation ? (
-                            <ActivationForm {...props}/>
-                        ) : (
-                            <div>
-                                <LoginForm {...props}/>
+                {props.state.sessionToken && props.state.sessionToken !== "undefined" ? (
+                    <BlockExplorer {...props}/>
+                ) : (
+                    <Row className={"row body"}>
+                        <Col md={3}>
+                        </Col>
+                        <Col md={6}>
+                            {props.state.login.activation ? (
+                                <ActivationForm {...props}/>
+                            ) : (
+                                <div>
+                                    <LoginForm {...props}/>
 
-                                <br/>
+                                    <br/>
 
-                                <RegisterForm {...props}/>
+                                    <RegisterForm {...props}/>
 
-                                <br/>
-                            </div>
-                        )}
+                                    <br/>
+                                </div>
+                            )}
 
 
-                    </Col>
-                    <Col md={3}>
-                    </Col>
-                </Row>
+                        </Col>
+                        <Col md={3}>
+                        </Col>
+                    </Row>
+                )}
             </Grid>
         </div>
     );

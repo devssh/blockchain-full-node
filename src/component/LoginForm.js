@@ -3,7 +3,7 @@ import {Col, Grid, Row} from "react-bootstrap";
 import CryptoJS from 'crypto-js';
 import {request} from './reducer/request';
 
-class RegisterForm extends React.Component {
+class LoginForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -21,6 +21,7 @@ class RegisterForm extends React.Component {
             email: this.state.email,
             password: this.state.password
         }, this.props.state.setLogin);
+        this.props.state.setEmail(this.state.email);
         this.setState({password: ""});
         this.refs.loginEmail.value = "";
         this.refs.loginPassword.value = "";
@@ -30,7 +31,7 @@ class RegisterForm extends React.Component {
 
     updateEmail(event) {
         if (event.key === "Enter") {
-            this.login();
+            // this.login(event);
             event.preventDefault();
         }
         this.setState({email: event.target.value + "@gmail.com"});
@@ -38,7 +39,7 @@ class RegisterForm extends React.Component {
 
     updatePassword(event) {
         if (event.key === "Enter") {
-            this.login();
+            this.login(event);
             event.preventDefault();
         }
         this.setState({password: CryptoJS.SHA3(event.target.value).toString()});
@@ -53,7 +54,7 @@ class RegisterForm extends React.Component {
                             Email
                         </Col>
                         <Col md={3}>
-                            <input type="text" ref={"loginEmail"} onChange={this.updateEmail} placeholder={"jane.doe"}/>
+                            <input type="text" ref={"loginEmail"} onKeyUp={this.updateEmail} placeholder={"jane.doe"} autoFocus/>
                         </Col>
                         <Col md={1} className={"email-suffix"}>
                             @gmail.com
@@ -64,7 +65,7 @@ class RegisterForm extends React.Component {
                             Password
                         </Col>
                         <Col md={4}>
-                            <input type="password" ref={"loginPassword"} onChange={this.updatePassword}
+                            <input type="password" ref={"loginPassword"} onKeyUp={this.updatePassword}
                                    placeholder={"**********"}/>
                         </Col>
                     </Row>
@@ -78,4 +79,4 @@ class RegisterForm extends React.Component {
     }
 }
 
-export default RegisterForm;
+export default LoginForm;
