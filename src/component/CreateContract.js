@@ -27,14 +27,16 @@ class CreateContract extends React.Component {
 
     createContract(event) {
         let {name, field1, field2, field3, field4, field5} = this.state;
+        if (name.trim().length > 0) {
+            request('post', '/createContract', {
+                name: name,
+                fields: [field1, field2, field3, field4, field5]
+            }, (data) => {
+            });
+            this.setState({name: "", field1: "", field2: "", field3: "", field4: "", field5: ""});
+            this.refs.createContractForm.reset();
 
-        request('post', '/createContract', {
-            name: name,
-            fields: [field1, field2, field3, field4, field5]
-        }, (data) => {
-        });
-        this.setState({name: "", field1: "", field2: "", field3: "", field4: "", field5: ""});
-        this.refs.createContractForm.reset();
+        }
         event.stopPropagation();
         event.preventDefault();
     };

@@ -1,7 +1,9 @@
-import React from 'react';
-import HomePage from "./presentation/HomePage";
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import React from "react";
+import BlockView from "./component/BlockView";
+import HomePage from "./component/presentation/HomePage";
 
-class AppState extends React.Component {
+class App extends React.Component {
 
     constructor(props) {
         super(props);
@@ -62,9 +64,17 @@ class AppState extends React.Component {
 
     render() {
         return (
-            <HomePage state={this.state}/>
+            <Router>
+                <div>
+                    <Switch>
+                        <Route render={(routeProps)=>(<HomePage state={this.state} {...routeProps}/>)} exact path="/"/>
+                        <Route render={(routeProps)=>(<BlockView state={this.state} {...routeProps}/>)} path="/block/:blockDepth"/>
+                    </Switch>
+                </div>
+            </Router>
         );
     }
+
 }
 
-export default AppState;
+export default App;
