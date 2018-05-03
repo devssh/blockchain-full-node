@@ -1,12 +1,62 @@
 import React from 'react';
 import {Col, Grid, Row} from "react-bootstrap";
+import {request} from "./reducer/request";
+import BlockDetail from "./BlockDetail";
 
 class BlockView extends React.Component {
 
-    render() {
-        let {sessionToken} = this.props.state;
+    constructor(props) {
+        let {email, sessionToken, setBlocks} = props.state;
+        super(props);
+        request('post', '/blocks', {
+            email: email,
+            sessionToken: sessionToken
+        }, setBlocks);
+    }
 
-        let backJSX = <input type={"button"} value={"Back"}/>;
+    render() {
+        let {match} = this.props;
+        let {sessionToken, blocks} = this.props.state;
+        let block = blocks[match.params.blockDepth] || {sign: "", blockData: {previousBlockSign: ""}};
+        let blockDetail = block.blockData;
+
+
+        let backJSX = (
+            <div className={"back-button"}>
+                <a href={"/"}>
+                    <input type={"button"} value={"Back"}/>
+                </a>
+            </div>
+        );
+        let blockDetailsJSX = [];
+        blockDetailsJSX.push(
+            <BlockDetail label={"Block Signature:"} detail={block.sign.split("").reverse().join("")}/>
+        );
+        blockDetailsJSX.push(
+            <BlockDetail label={"Public Key:"} detail={block.publicKey}/>
+        );
+        blockDetailsJSX.push(
+            <BlockDetail label={"Depth:"} detail={blockDetail.depth}/>
+        );
+        blockDetailsJSX.push(
+            <BlockDetail label={"Block Created At:"} detail={blockDetail.blockCreatedAt}/>
+        );
+        blockDetailsJSX.push(
+            <BlockDetail label={"Nonce:"} detail={blockDetail.nonce}/>
+        );
+        blockDetailsJSX.push(
+            <BlockDetail label={"No. of Txns:"} detail={blockDetail.numberOfTransactions}/>
+        );
+        blockDetailsJSX.push(
+            <BlockDetail label={"Prev. Block Sign:"}
+                         detail={blockDetail.previousBlockSign.split("").reverse().join("")}/>
+        );
+        blockDetailsJSX.push(
+            <BlockDetail label={"Merkle root:"} detail={blockDetail.merkleRoot}/>
+        );
+
+
+        console.log("block", block);
         return (
             <div>
                 <Grid>
@@ -21,11 +71,9 @@ class BlockView extends React.Component {
                     </Row>
                     {sessionToken && sessionToken !== "undefined" ? (
                         <div className={"block-view"}>
-                            <div className={"back-button"}>
                             {backJSX}
-                            </div>
                             <div className={"block-details"}>
-                                Hello
+                                {blockDetailsJSX}
                             </div>
                         </div>
                     ) : (

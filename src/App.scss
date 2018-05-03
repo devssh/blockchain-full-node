@@ -256,8 +256,26 @@
   margin-right: 10px;
 }
 
+.block-detail {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.block-detail-label {
+  display: inline-block;
+  font-size: 16px;
+  width: 126px;
+}
+
+.block-data {
+  margin-left: 10px;
+  padding: 3px;
+  display: inline-block;
+}
+
 .huge-block-data {
-  border: 1px solid #ddd;
+  border: 1px solid #08c;
+  box-shadow: 1px 1px 7px 0px #08c;
 }
 
 .block-link {
@@ -287,4 +305,7 @@
   margin-left: 44px;
 }
 
+.remove-margin {
+  margin: 0px 0px;
+}
 

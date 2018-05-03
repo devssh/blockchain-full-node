@@ -41,7 +41,6 @@ class BlockExplorer extends React.Component {
     }
 
     render() {
-        console.log("blocks", this.props.state.contracts);
         let contracts = this.props.state.contracts;
         let contractNames = Object.keys(contracts);
 
