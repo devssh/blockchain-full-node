@@ -6,6 +6,7 @@ import ActivationForm from "../ActivationForm";
 import BlockExplorer from "../BlockExplorer";
 
 const HomePage = (props) => {
+    console.log("props", props.state)
     return (
         <div>
             <Grid>

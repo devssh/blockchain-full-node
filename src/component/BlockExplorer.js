@@ -14,6 +14,7 @@ class BlockExplorer extends React.Component {
     logout() {
         this.props.state.setEmail("");
         this.props.state.setSessionToken({sessionToken: ""});
+        this.props.state.setLogin({activation: undefined});
     }
 
     componentDidMount() {
@@ -79,7 +80,7 @@ class BlockExplorer extends React.Component {
                         <div className={"block-preview"}>
                             Depth:
                             <div className={"block-data"}>
-                                <a href={"block/"+blockData.depth}>{blockData.depth}</a>
+                                <a href={"block/" + blockData.depth}>{blockData.depth}</a>
                             </div>
                         </div>
                         <div className={"block-preview"}>
@@ -100,25 +101,55 @@ class BlockExplorer extends React.Component {
             )
         }
 
+        let createContract = (
+            <Col md={4} className={"create-things"}>
+                <div className={"show-contracts"}>
+                    {contractsJSX}
+                </div>
+                <CreateContract/>
+            </Col>
+        );
+        let createTransaction = (
+            <Col md={4} className={"create-things"}>
+                <div className={"show-contracts"}>
+                    {contractsJSX}
+                </div>
+            </Col>
+        );
+        let completeTransaction = (
+            <Col md={4} className={"create-things"}>
+                <div className={"show-contracts"}>
+                    {contractsJSX}
+                </div>
+            </Col>
+        );
+
         return (
             <Row className={"block-explorer"}>
                 <Row className={"explorer-header"}>
                     <div className={"panel-headers"}>
-                        <input type="button" value="View Transactions"/>
-                        <input type="button" className={"vertical-split"} value="Start Transaction"/>
-                        <input type="button" value="Complete Transaction"/>
+                        <input type="button" value="Create Contract" onClick={() => {
+                            this.props.state.setView("contract")
+                        }}/>
+                        <input type="button" className={"vertical-split"} value="Start Transaction" onClick={() => {
+                            this.props.state.setView("createTransaction")
+                        }}/>
+                        <input type="button" value="Complete Transaction" onClick={() => {
+                            this.props.state.setView("completeTransaction")
+                        }}/>
                     </div>
                     <div className={"logout-panel"}>
                         <input type="button" value={"Logout " + this.props.state.email} onClick={this.logout}/>
                     </div>
                 </Row>
                 <Row className={"block-explorer-body"}>
-                    <Col md={4} className={"create-contract"}>
-                        <div className={"show-contracts"}>
-                            {contractsJSX}
-                        </div>
-                        <CreateContract/>
-                    </Col>
+
+                    {this.props.state.createView === "contract" ?
+                        createContract : this.props.state.createView === "createTransaction" ?
+                            createTransaction : this.props.state.createView === "completeTransaction" ?
+                                completeTransaction :
+                                null}
+
                     <Col md={5} className={"blocks"}>
                         {blocksJSX}
                     </Col>
