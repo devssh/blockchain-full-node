@@ -15,6 +15,9 @@ class BlockView extends React.Component {
     }
 
     render() {
+        let reverse = (somestr) => {
+            return somestr ? somestr.split("").reverse().join("") : null;
+        };
         let {match} = this.props;
         let {sessionToken, blocks} = this.props.state;
         let block = blocks[match.params.blockDepth] || {sign: "", blockData: {previousBlockSign: ""}};
@@ -28,12 +31,13 @@ class BlockView extends React.Component {
                 </a>
             </div>
         );
+        console.log("data", blockDetail);
         let blockDetailsJSX = [];
         blockDetailsJSX.push(
-            <BlockDetail label={"Block Signature:"} detail={block.sign.split("").reverse().join("")}/>
+            <BlockDetail label={"Block Signature:"} detail={reverse(block.sign)}/>
         );
         blockDetailsJSX.push(
-            <BlockDetail label={"Public Key:"} detail={block.publicKey}/>
+            <BlockDetail label={"Public Key:"} detail={reverse(block.publicKey)}/>
         );
         blockDetailsJSX.push(
             <BlockDetail label={"Depth:"} detail={blockDetail.depth}/>
@@ -49,14 +53,13 @@ class BlockView extends React.Component {
         );
         blockDetailsJSX.push(
             <BlockDetail label={"Prev. Block Sign:"}
-                         detail={blockDetail.previousBlockSign.split("").reverse().join("")}/>
+                         detail={reverse(blockDetail.previousBlockSign)}/>
         );
         blockDetailsJSX.push(
-            <BlockDetail label={"Merkle root:"} detail={blockDetail.merkleRoot}/>
+            <BlockDetail label={"Merkle root:"} detail={reverse(blockDetail.merkleRoot)}/>
         );
 
 
-        console.log("block", block);
         return (
             <div>
                 <Grid>

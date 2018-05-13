@@ -6,7 +6,7 @@ const BlockDetail = ({label, detail}) => {
             <div className={"block-detail-label"}>
                 {label}
             </div>
-            {detail ?
+            {detail || detail === 0 ?
                 <div className={"block-data " + (detail.length > 47 ? "huge-block-data" : "")}>
                     {detail}
                 </div>

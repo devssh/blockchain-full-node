@@ -6,7 +6,6 @@ import ActivationForm from "../ActivationForm";
 import BlockExplorer from "../BlockExplorer";
 
 const HomePage = (props) => {
-    console.log("props", props.state)
     return (
         <div>
             <Grid>
@@ -26,7 +25,7 @@ const HomePage = (props) => {
                         <Col md={3}>
                         </Col>
                         <Col md={6}>
-                            {props.state.login.activation ? (
+                            {props.state.login.activation && props.state.login.activation !== "" ? (
                                 <ActivationForm {...props}/>
                             ) : (
                                 <div>

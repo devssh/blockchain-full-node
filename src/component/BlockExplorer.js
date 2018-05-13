@@ -3,6 +3,8 @@ import {request} from "./reducer/request";
 import {Col, Row} from "react-bootstrap";
 import CreateContract from "./CreateContract";
 import moment from "moment";
+import CreateTransaction from "./CreateTransaction";
+import CompleteTransaction from "./CompleteTransaction";
 
 class BlockExplorer extends React.Component {
 
@@ -14,11 +16,11 @@ class BlockExplorer extends React.Component {
     logout() {
         this.props.state.setEmail("");
         this.props.state.setSessionToken({sessionToken: ""});
-        this.props.state.setLogin({activation: undefined});
+        this.props.state.setLogin({activation: ""});
     }
 
     componentDidMount() {
-        let {email, sessionToken, setBlocks, setContracts} = this.props.state;
+        let {email, sessionToken, setBlocks, setContracts, setTransactions} = this.props.state;
         request('post', '/blocks', {
             email: email,
             sessionToken: sessionToken
@@ -38,15 +40,23 @@ class BlockExplorer extends React.Component {
                 email: email,
                 sessionToken: sessionToken
             }, setContracts);
+
+            request('post', '/transactions', {
+                email: email,
+                sessionToken: sessionToken
+            }, setTransactions);
+
         }, 1000);
     }
 
     render() {
-        let contracts = this.props.state.contracts;
-        let contractNames = Object.keys(contracts);
+        let removeZone = (somedatetime) => {
+            return somedatetime.split("[")[0];
+        };
+        let contracts = this.props.state.contracts, contractNames = contracts ? Object.keys(contracts) : [];
 
         let contractsJSX = [];
-        for (let i = 0; i < contractNames.length; i++) {
+        for (let i = contractNames.length - 1; i > -1; i--) {
             let contractKey = contractNames[i], contract = contracts[contractKey];
             let contractFieldsJSX = [];
             for (let j = 0; j < contract.fields.length; j++) {
@@ -68,8 +78,34 @@ class BlockExplorer extends React.Component {
             );
         }
 
+        let transactions = this.props.state.transactions,
+            transactionNames = transactions ? Object.keys(transactions) : [];
 
-        let blocksJSX = [], blocks = this.props.state.blocks, blockKeys = Object.keys(blocks);
+        let transactionsJSX = [];
+        for (let i = transactionNames.length - 1; i > -1; i--) {
+            let transactionKey = transactionNames[i], transaction = transactions[transactionKey];
+            let transactionValuesJSX = [];
+            for (let j = 0; j < transaction.values.length; j++) {
+                transactionValuesJSX.push(
+                    <div className={"transaction-field"} key={transaction.values[j]}>
+                        {transaction.values[j]}
+                    </div>
+                );
+            }
+            transactionsJSX.push(
+                <div className={"transaction"} key={transaction.name}>
+                    {transaction.contractName} - {moment(removeZone(transaction.createdAt)).fromNow()}
+                    <div>
+                        <div className={"transaction-address"}>Block Depth: {transaction.address.blockDepth} </div>
+                        <div className={"transaction-address"}>Transaction
+                            Depth: {transaction.address.transactionDepth}</div>
+                    </div>
+                    {transactionValuesJSX}
+                </div>
+            );
+        }
+
+        let blocksJSX = [], blocks = this.props.state.blocks, blockKeys = blocks ? Object.keys(blocks) : [];
 
         for (let i = blockKeys.length - 1; i > -1; i--) {
             let block = blocks[blockKeys[i]];
@@ -114,6 +150,7 @@ class BlockExplorer extends React.Component {
                 <div className={"show-contracts"}>
                     {contractsJSX}
                 </div>
+                <CreateTransaction/>
             </Col>
         );
         let completeTransaction = (
@@ -121,6 +158,7 @@ class BlockExplorer extends React.Component {
                 <div className={"show-contracts"}>
                     {contractsJSX}
                 </div>
+                <CompleteTransaction/>
             </Col>
         );
 
@@ -154,7 +192,7 @@ class BlockExplorer extends React.Component {
                         {blocksJSX}
                     </Col>
                     <Col md={3} className={"transactions"}>
-                        Show transactions here
+                        {transactionsJSX}
                     </Col>
                 </Row>
             </Row>

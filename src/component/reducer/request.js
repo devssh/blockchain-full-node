@@ -8,7 +8,6 @@ const request = (method, url, data, action) => {
         url: host + url,
         data: data,
     }).then(({data}) => {
-        console.log("data",data);
         action(data);
     }).catch((error) => {
         console.log(error);

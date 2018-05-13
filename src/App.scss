@@ -209,7 +209,8 @@
   padding: 20px;
   font-size: 12px;
   width: 369px;
-
+  height: 300px;
+  overflow-y: scroll;
 }
 
 .contract {
@@ -219,11 +220,19 @@
   padding: 10px;
 }
 
-.contract-field {
+
+.transaction {
+  //border-radius: 3px;
+  margin-top: -1px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.contract-field, .transaction-field {
   margin-left: 20px;
 }
 
-.contract-address {
+.contract-address, .transaction-address {
   display: inline-block;
   padding-left:10px;
   padding-right:10px;
@@ -236,6 +245,9 @@
 }
 
 .transactions {
+  padding: 20px;
+  font-size: 13px;
+  font-family: "Arial", Helvetica, Arial, sans-serif, monospace;
   position: absolute;
   margin-left: 1051px;
   border: 1px solid #ddd;

@@ -13,6 +13,7 @@ class App extends React.Component {
         this.setEmail = this.setEmail.bind(this);
         this.setBlocks = this.setBlocks.bind(this);
         this.setContracts = this.setContracts.bind(this);
+        this.setTransactions = this.setTransactions.bind(this);
         this.setView = this.setView.bind(this);
         this.state = {
             setValue: this.setValue,
@@ -21,12 +22,14 @@ class App extends React.Component {
             setEmail: this.setEmail,
             setBlocks: this.setBlocks,
             setContracts: this.setContracts,
+            setTransactions: this.setTransactions,
             setView: this.setView,
             login: "",
             sessionToken: localStorage.getItem('sessionToken') || "",
             email: localStorage.getItem('email') || "",
             blocks: "",
             contracts: "",
+            transactions: "",
             createView: "contract"
         }
     }
@@ -64,6 +67,10 @@ class App extends React.Component {
 
     setContracts(value) {
         this.setState({contracts: value.contracts});
+    }
+
+    setTransactions(value) {
+        this.setState({transactions: value.transactions});
     }
 
     render() {
