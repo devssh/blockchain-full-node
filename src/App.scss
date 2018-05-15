@@ -163,12 +163,6 @@
   overflow-x: hidden;
 }
 
-.create-things {
-  position: absolute;
-  overflow-y: scroll;
-  height: 750px;
-}
-
 .create-contract-button input {
   background-color: #000000;
   color: #ddd;
@@ -189,6 +183,12 @@
   margin-left: -31px;
   font-size: 14px;
   width: 245px;
+}
+
+.create-things {
+  position: absolute;
+  overflow-y: scroll;
+  height: 670px;
 }
 
 .show-contracts {
