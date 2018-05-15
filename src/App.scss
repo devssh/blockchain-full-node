@@ -163,12 +163,6 @@
   overflow-x: hidden;
 }
 
-.create-contract-button input {
-  background-color: #000000;
-  color: #ddd;
-  margin-left: 112px;
-  margin-top: 15px;
-}
 
 .textfield .label {
   margin-top: 15px;
@@ -180,9 +174,16 @@
 .textfield input {
   margin-top: 10px;
   color: #000;
-  margin-left: -31px;
+  margin-left: -29px;
   font-size: 14px;
   width: 245px;
+}
+
+.create-contract-button input {
+  background-color: #000000;
+  color: #ddd;
+  margin-left: 83px;
+  margin-top: 15px;
 }
 
 .create-things {
@@ -314,7 +315,7 @@
 }
 
 .back-button {
-  margin-left: 1309px;
+  margin-left: 1277px;
   margin-top: 23px;
 }
 
@@ -325,7 +326,7 @@
 }
 
 .block-details {
-  margin-left: 44px;
+  margin-left: 107px;
 }
 
 .remove-margin {

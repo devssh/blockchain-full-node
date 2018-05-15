@@ -102,8 +102,7 @@ class CreateTransaction extends React.Component {
                 <Grid>
                     <TextField label={"Name"} placeholder={"SampleCode30"} onKeyUp={this.updateName}/>
                     <TextField label={"Brand"} placeholder={""} onKeyUp={this.updateField1}/>
-                    //CHeck called coupon description
-                    <TextField label={"Discount%"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
+                    <TextField label={"Discount"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
                     <TextField label={"Email1"} placeholder={""} onKeyUp={this.updateField3}/>
                     <TextField label={"Email2"} placeholder={""} onKeyUp={this.updateField4}/>
                     <TextField label={"Email3"} placeholder={""} onKeyUp={this.updateField5}/>
