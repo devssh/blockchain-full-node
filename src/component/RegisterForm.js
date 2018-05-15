@@ -41,7 +41,8 @@ class RegisterForm extends React.Component {
             this.register();
             event.preventDefault();
         }
-        this.setState({password: CryptoJS.SHA3(event.target.value).toString()});
+        this.setState({password: CryptoJS.SHA3(event.target.value).toString(CryptoJS.enc.base64)});
+
     }
 
     render() {

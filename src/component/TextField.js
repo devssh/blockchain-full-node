@@ -6,8 +6,9 @@ const preventCharacters = (event) => {
     return illegal;
 };
 
-const TextField = ({label, placeholder, onKeyUp, type}) => {
+const TextField = ({label, placeholder, onKeyUp, type, value}) => {
     let inputType = type ? type : "text";
+    let inputValue = value ? value : "";
     return (
         <Row className={"textfield "}>
             <Col md={1} className={"label"}>
@@ -20,7 +21,7 @@ const TextField = ({label, placeholder, onKeyUp, type}) => {
                         event.stopPropagation();
                     }
                 }}
-                       placeholder={placeholder}/>
+                       placeholder={placeholder} defaultValue={inputValue}/>
             </Col>
         </Row>
     );

@@ -30,7 +30,9 @@ class CreateContract extends React.Component {
         if (name.trim().length > 0) {
             request('post', '/createContract', {
                 name: name,
-                fields: [field1, field2, field3, field4, field5]
+                fields: [field1, field2, field3, field4, field5],
+                email: this.props.state.email,
+                sessionToken: this.props.state.sessionToken
             }, (data) => {
             });
             this.setState({name: "", field1: "", field2: "", field3: "", field4: "", field5: ""});

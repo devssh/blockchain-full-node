@@ -50,6 +50,7 @@ class BlockExplorer extends React.Component {
     }
 
     render() {
+        let props = this.props;
         let removeZone = (somedatetime) => {
             return somedatetime.split("[")[0];
         };
@@ -142,7 +143,7 @@ class BlockExplorer extends React.Component {
                 <div className={"show-contracts"}>
                     {contractsJSX}
                 </div>
-                <CreateContract/>
+                <CreateContract {...props}/>
             </Col>
         );
         let createTransaction = (
@@ -150,7 +151,7 @@ class BlockExplorer extends React.Component {
                 <div className={"show-contracts"}>
                     {contractsJSX}
                 </div>
-                <CreateTransaction/>
+                <CreateTransaction {...props}/>
             </Col>
         );
         let completeTransaction = (
@@ -158,7 +159,7 @@ class BlockExplorer extends React.Component {
                 <div className={"show-contracts"}>
                     {contractsJSX}
                 </div>
-                <CompleteTransaction />
+                <CompleteTransaction {...props}/>
             </Col>
         );
 

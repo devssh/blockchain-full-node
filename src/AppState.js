@@ -30,7 +30,7 @@ class App extends React.Component {
             blocks: "",
             contracts: "",
             transactions: "",
-            createView: "contract"
+            createView: "createTransaction"
         }
     }
 

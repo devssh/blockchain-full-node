@@ -30,7 +30,9 @@ class CreateTransaction extends React.Component {
         if (name.trim().length > 0) {
             request('post', '/createTransaction', {
                 name: name,
-                fields: [field1, field2, field3, field4, field5]
+                fields: [field1, field2, field3, field4, field5],
+                email: this.props.state.email,
+                sessionToken: this.props.state.sessionToken
             }, (data) => {
             });
             this.setState({name: "", field1: "", field2: "", field3: "", field4: "", field5: ""});
@@ -97,16 +99,19 @@ class CreateTransaction extends React.Component {
     }
 
     render() {
+        let {email} = this.props.state;
         return (
             <form className={"form-view"} ref={"createContractForm"}>
                 <Grid>
                     <TextField label={"Name"} placeholder={"SampleCode30"} onKeyUp={this.updateName}/>
-                    <TextField label={"Brand"} placeholder={""} onKeyUp={this.updateField1}/>
+                    <TextField label={"Product"} placeholder={""} onKeyUp={this.updateField1}
+                               value={email === "forfive@gmail.com" ? "For Five Coffee Roasters" :
+                                   email === "simonsips@gmail.com" ? "Simon Sips" : ""}/>
                     <TextField label={"Discount"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
                     <TextField label={"Email1"} placeholder={""} onKeyUp={this.updateField3}/>
                     <TextField label={"Email2"} placeholder={""} onKeyUp={this.updateField4}/>
                     <TextField label={"Email3"} placeholder={""} onKeyUp={this.updateField5}/>
-                    <SubmitButton className={"create-contract-button"} value={"Create Transaction"}
+                    <SubmitButton className={"create-contract-button"} value={"Create Coupon"}
                                   onClick={this.createTransaction}/>
                 </Grid>
 

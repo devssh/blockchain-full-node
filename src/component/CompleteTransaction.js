@@ -44,7 +44,7 @@ class CompleteTransaction extends React.Component {
             <form className={"form-view"} ref={"createContractForm"}>
                 <Grid>
                     <TextField label={"Scan"} placeholder={"Scan"} onKeyUp={this.updateName}/>
-                    <SubmitButton className={"create-contract-button"} value={"Complete Transaction"}
+                    <SubmitButton className={"create-contract-button"} value={"Redeem Coupon"}
                                   onClick={this.createTransaction}/>
                 </Grid>
 
