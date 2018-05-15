@@ -158,7 +158,7 @@ class BlockExplorer extends React.Component {
                 <div className={"show-contracts"}>
                     {contractsJSX}
                 </div>
-                <CompleteTransaction/>
+                <CompleteTransaction />
             </Col>
         );
 

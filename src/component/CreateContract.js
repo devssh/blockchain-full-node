@@ -98,7 +98,7 @@ class CreateContract extends React.Component {
 
     render() {
         return (
-            <form ref={"createContractForm"}>
+            <form className={"form-view"} ref={"createContractForm"}>
                 <Grid>
                     <TextField label={"Name"} placeholder={"My Contract"} onKeyUp={this.updateName}/>
                     <TextField label={"Field1"} placeholder={""} onKeyUp={this.updateField1}/>

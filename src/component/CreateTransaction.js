@@ -98,14 +98,15 @@ class CreateTransaction extends React.Component {
 
     render() {
         return (
-            <form ref={"createContractForm"}>
+            <form className={"form-view"} ref={"createContractForm"}>
                 <Grid>
                     <TextField label={"Name"} placeholder={"SampleCode30"} onKeyUp={this.updateName}/>
-                    <TextField label={"Email1"} placeholder={""} onKeyUp={this.updateField1}/>
-                    <TextField label={"Email2"} placeholder={""} onKeyUp={this.updateField2}/>
-                    <TextField label={"Email3"} placeholder={""} onKeyUp={this.updateField3}/>
-                    <TextField label={"Email4"} placeholder={""} onKeyUp={this.updateField4}/>
-                    <TextField label={"Email5"} placeholder={""} onKeyUp={this.updateField5}/>
+                    <TextField label={"Brand"} placeholder={""} onKeyUp={this.updateField1}/>
+                    //CHeck called coupon description
+                    <TextField label={"Discount%"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
+                    <TextField label={"Email1"} placeholder={""} onKeyUp={this.updateField3}/>
+                    <TextField label={"Email2"} placeholder={""} onKeyUp={this.updateField4}/>
+                    <TextField label={"Email3"} placeholder={""} onKeyUp={this.updateField5}/>
                     <SubmitButton className={"create-contract-button"} value={"Create Transaction"}
                                   onClick={this.createTransaction}/>
                 </Grid>
