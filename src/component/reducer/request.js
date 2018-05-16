@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const host = 'http://localhost:8080';
+const host = 'http://0.0.0.0:8080';
 
 const request = (method, url, data, action) => {
     return axios({
