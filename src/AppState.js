@@ -25,6 +25,7 @@ class App extends React.Component {
             setTransactions: this.setTransactions,
             setView: this.setView,
             login: "",
+            role: localStorage.getItem('role') || "",
             sessionToken: localStorage.getItem('sessionToken') || "",
             email: localStorage.getItem('email') || "",
             blocks: "",
@@ -51,8 +52,9 @@ class App extends React.Component {
         if (value.activation) {
             this.setState({login: value});
         } else {
-            this.setState({sessionToken: value.sessionToken});
+            this.setState({sessionToken: value.sessionToken, role: value.role});
             localStorage.setItem('sessionToken', value.sessionToken);
+            localStorage.setItem('role', value.role);
         }
     }
 

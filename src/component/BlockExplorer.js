@@ -11,9 +11,11 @@ class BlockExplorer extends React.Component {
     constructor(props) {
         super(props);
         this.logout = this.logout.bind(this);
+        this.interval = "";
     }
 
     logout() {
+        clearInterval(this.interval);
         this.props.state.setEmail("");
         this.props.state.setSessionToken({sessionToken: ""});
         this.props.state.setLogin({activation: ""});
@@ -30,7 +32,7 @@ class BlockExplorer extends React.Component {
             email: email,
             sessionToken: sessionToken
         }, setContracts);
-        setInterval(() => {
+        this.interval = setInterval(() => {
             request('post', '/blocks', {
                 email: email,
                 sessionToken: sessionToken
@@ -51,6 +53,7 @@ class BlockExplorer extends React.Component {
 
     render() {
         let props = this.props;
+        let {role} = this.props.state;
         let removeZone = (somedatetime) => {
             return somedatetime.split("[")[0];
         };
@@ -138,65 +141,80 @@ class BlockExplorer extends React.Component {
             )
         }
 
-        let createContract = (
-            <Col md={4} className={"create-things"}>
-                <div className={"show-contracts"}>
-                    {contractsJSX}
-                </div>
-                <CreateContract {...props}/>
-            </Col>
-        );
-        let createTransaction = (
-            <Col md={4} className={"create-things"}>
-                <div className={"show-contracts"}>
-                    {contractsJSX}
-                </div>
-                <CreateTransaction {...props}/>
-            </Col>
-        );
-        let completeTransaction = (
-            <Col md={4} className={"create-things"}>
-                <div className={"show-contracts"}>
-                    {contractsJSX}
-                </div>
-                <CompleteTransaction {...props}/>
-            </Col>
-        );
+        let logoutJSX  =
+            <div className={"logout-panel"}>
+                <input type="button" value={"Logout " + this.props.state.email} onClick={this.logout}/>
+            </div>;
+        let returnJSX = "";
+        console.log(role);
+        switch (role) {
+            case "full":
+                returnJSX = <Row className={"block-explorer"}>
+                    <Row className={"explorer-header"}>
+                        <div className={"panel-headers"}>
+                            <input type="button" value="Create Contract" onClick={() => {
+                                this.props.state.setView("contract")
+                            }}/>
+                            <input type="button" className={"vertical-split"} value="Start Transaction" onClick={() => {
+                                this.props.state.setView("createTransaction")
+                            }}/>
+                            <input type="button" value="Complete Transaction" onClick={() => {
+                                this.props.state.setView("completeTransaction")
+                            }}/>
+                        </div>
+                        {logoutJSX}
+                    </Row>
+                    <Row className={"block-explorer-body"}>
+                        <Col md={4} className={"create-things"}>
+                            <div className={"show-contracts"}>
+                                {contractsJSX}
+                            </div>
+                            {this.props.state.createView === "contract" ?
+                                <CreateContract {...props}/> : this.props.state.createView === "createTransaction" ?
+                                    <CreateTransaction {...props}/> : this.props.state.createView === "completeTransaction" ?
+                                        <CompleteTransaction {...props}/> :
+                                        null}
 
+                        </Col>
+
+
+                        <Col md={5} className={"blocks"}>
+                            {blocksJSX}
+                        </Col>
+                        <Col md={3} className={"transactions"}>
+                            {transactionsJSX}
+                        </Col>
+                    </Row>
+                </Row>;
+                break;
+            case "dontcreate":
+                returnJSX = <Row className={"block-explorer"}>
+                        <Row className={"explorer-header"}>
+                            {logoutJSX}
+                        </Row>
+                        <Row className={"block-explorer-body"}>
+                            <Col md={4} className={"create-things"}>
+                                <CreateTransaction {...props}/>
+                            </Col>
+                        </Row>
+                    </Row>
+                break;
+            case "redeem" :
+                returnJSX = <Row className={"block-explorer"}>
+                    <Row className={"explorer-header"}>
+                        {logoutJSX}
+                    </Row>
+                    <Row className={"block-explorer-body"}>
+                        <Col md={4} className={"create-things"}>
+                            <CompleteTransaction {...props}/>
+                        </Col>
+                    </Row>
+                </Row>
+                break;
+
+        }
         return (
-            <Row className={"block-explorer"}>
-                <Row className={"explorer-header"}>
-                    <div className={"panel-headers"}>
-                        <input type="button" value="Create Contract" onClick={() => {
-                            this.props.state.setView("contract")
-                        }}/>
-                        <input type="button" className={"vertical-split"} value="Start Transaction" onClick={() => {
-                            this.props.state.setView("createTransaction")
-                        }}/>
-                        <input type="button" value="Complete Transaction" onClick={() => {
-                            this.props.state.setView("completeTransaction")
-                        }}/>
-                    </div>
-                    <div className={"logout-panel"}>
-                        <input type="button" value={"Logout " + this.props.state.email} onClick={this.logout}/>
-                    </div>
-                </Row>
-                <Row className={"block-explorer-body"}>
-
-                    {this.props.state.createView === "contract" ?
-                        createContract : this.props.state.createView === "createTransaction" ?
-                            createTransaction : this.props.state.createView === "completeTransaction" ?
-                                completeTransaction :
-                                null}
-
-                    <Col md={5} className={"blocks"}>
-                        {blocksJSX}
-                    </Col>
-                    <Col md={3} className={"transactions"}>
-                        {transactionsJSX}
-                    </Col>
-                </Row>
-            </Row>
+           returnJSX
         );
     }
 }
