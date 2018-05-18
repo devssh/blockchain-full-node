@@ -31,31 +31,33 @@ class CompleteTransaction extends React.Component {
         let {name, field1, field2, field3, field4} = this.state;
         if (name.trim().length > 0) {
             request('post', '/completeTransaction', {
-                name: name, 
-                fields: [field1,field2, field3, field4],
+                name: name,
+                fields: [field1, field2, field3, field4],
                 email: this.props.state.email,
                 sessionToken: this.props.state.sessionToken
             }, (data) => {
                 let transactionStateJSX = "";
                 if (data.complete === true) {
-                    transactionStateJSX = <TransactionStatus className="success" imgsrc={success} label="Coupon is approved" />;
+                    transactionStateJSX =
+                        <TransactionStatus className="success" imgsrc={success} label="Coupon is approved"/>;
                 } else if (data.complete === false) {
-                    transactionStateJSX = <TransactionStatus className="failure" imgsrc={failure} label="Something went wrong. Please try again later." />;
-                } else if (data.compelete.toLowerCase() === "doublespenddetected"){
-                    transactionStateJSX = <TransactionStatus className="doublespenddetected" imgsrc={error} label="Coupon has expired" />;
+                    transactionStateJSX = <TransactionStatus className="failure" imgsrc={failure}
+                                                             label="Something went wrong. Please try again later."/>;
+                } else if (data.complete.toLowerCase() === "doublespenddetected") {
+                    transactionStateJSX =
+                        <TransactionStatus className="doublespenddetected" imgsrc={error} label="Coupon has expired"/>;
                 }
-               this.setState({transactionStateJSX}) 
+                this.setState({transactionStateJSX})
             });
 
         }
-        event.stopPropagation();
         event.preventDefault();
+        event.stopPropagation();
     };
 
     updateName(event) {
         if (event.key === "Enter") {
-            // this.login(event);
-            event.preventDefault();
+            this.createTransaction(event);
         } else {
             let scan = event.target.value.split(',');
             this.setState({
@@ -70,22 +72,23 @@ class CompleteTransaction extends React.Component {
 
     render() {
         return (
-            <form className={"form-view"} ref={"createContractForm"}>
-                <TextField label={"Scan"} type="password" placeholder={"Scan"}  onKeyUp={this.updateName} removeActive={false}/>
+            <div className={"form-view"} ref={"completeTransactionForm"}>
+                <TextField label={"Scan"} type="password" placeholder={"Scan"} onKeyUp={this.updateName}
+                           removeActive={false} autofocus={true}/>
                 <div className="button-container">
                     <SubmitButton className={"btn btn-primary"} value={"Redeem Coupon"}
-                                onClick={this.createTransaction}/>
+                                  onClick={this.createTransaction}/>
                 </div>
                 <div>
-                    
-                    <Display value={this.state.name} label={"Name"} />
-                    <Display value={this.state.field1} label={"Product"} />
-                    <Display value={this.state.field2} label={"Discount"} />
-                    <Display value={this.state.field3} label={"Email"} />
-                    <Display value={this.state.field4} label={"Code"} />
+
+                    <Display value={this.state.name} label={"Name"}/>
+                    <Display value={this.state.field1} label={"Product"}/>
+                    <Display value={this.state.field2} label={"Discount"}/>
+                    <Display value={this.state.field3} label={"Email"}/>
+                    <Display value={this.state.field4} label={"Code"}/>
                 </div>
                 {this.state.transactionStateJSX}
-            </form>
+            </div>
         );
     }
 }

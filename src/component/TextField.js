@@ -7,7 +7,7 @@ const preventCharacters = (event) => {
 };
 
 const TextField = (props) => {
-    let {label, placeholder = '', onKeyUp, type, value, disabled=false, removeActive=true} = props;
+    let {label, placeholder = '', onKeyUp, type, value, disabled=false, removeActive=true, autofocus=false} = props;
     let inputType = type ? type : "text";
     let inputValue = value ? value : "";
     return (
@@ -22,7 +22,7 @@ const TextField = (props) => {
                         event.stopPropagation();
                     }
                 }}  disabled={disabled}
-                       placeholder={placeholder} defaultValue={inputValue}/>
+                       placeholder={placeholder} defaultValue={inputValue} autoFocus={autofocus}/>
             </Col>
         </div>
     );
