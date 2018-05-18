@@ -88,6 +88,7 @@ h3 {
   margin: 10px;
   &.col-md-6 {
     width: calc(50% - 20px);
+    height: 550px;
   }
 }
 
@@ -128,7 +129,7 @@ h3 {
   color: #666;
 }
 .block-container {
-  max-height: 500px;
+  max-height: 480px;
   overflow-y: auto;
 }
 .text-right {
@@ -170,4 +171,25 @@ h3 {
 .small-text {
   font-size: 12px;
   display: block;
+}
+
+.border {
+  border: 1px solid #ccc;
+  min-height: 26px;
+}
+
+.transactionState {
+  padding: 10px;
+ &.failure {
+   background: #FDBF2D;
+   color: #FFF;
+ }
+ &.success {
+  background: #19AF54;
+  color: #FFF;
+ }
+ &.doublespenddetected {
+  background: #FC0D1B;
+  color: #FFF;
+ }
 }

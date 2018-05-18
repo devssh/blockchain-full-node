@@ -146,7 +146,6 @@ class BlockExplorer extends React.Component {
                 <input type="button" value={"Logout " + this.props.state.email} onClick={this.logout}/>
             </div>;
         let returnJSX = "";
-        console.log(role);
         switch (role) {
             case "full":
                 returnJSX = <Row className={"block-explorer"}>

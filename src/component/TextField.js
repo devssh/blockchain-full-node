@@ -6,7 +6,8 @@ const preventCharacters = (event) => {
     return illegal;
 };
 
-const TextField = ({label, placeholder, onKeyUp, type, value}) => {
+const TextField = (props) => {
+    let {label, placeholder = '', onKeyUp, type, value, disabled=false, removeActive=true} = props;
     let inputType = type ? type : "text";
     let inputValue = value ? value : "";
     return (
@@ -16,11 +17,11 @@ const TextField = ({label, placeholder, onKeyUp, type, value}) => {
             </Col>
             <Col md={10}>
                 <input type={inputType} onKeyUp={onKeyUp} onKeyDown={event => {
-                    if (preventCharacters(event)) {
+                    if (removeActive && preventCharacters(event)) {
                         event.preventDefault();
                         event.stopPropagation();
                     }
-                }}
+                }}  disabled={disabled}
                        placeholder={placeholder} defaultValue={inputValue}/>
             </Col>
         </div>

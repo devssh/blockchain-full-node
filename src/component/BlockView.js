@@ -29,7 +29,6 @@ class BlockView extends React.Component {
                 <a href="/" className="btn btn-primary ">Back</a>
             </div>
         );
-        console.log("data", blockDetail);
         let blockDetailsJSX = [];
         blockDetailsJSX.push(
             <BlockDetail label={"Block Signature:"} detail={reverse(block.sign)}/>
@@ -66,7 +65,8 @@ class BlockView extends React.Component {
                         {
                             sessionToken && sessionToken !== "undefined" && <div className="logout-panel">
                                 <div className="logout" onClick={this.logout} title={"Logout " + email}>
-                                    <i className="fa fa-power-off" aria-hidden="true"></i>
+                                    <i className="fa fa-power-off" aria-hidden="true"></i><br/>
+                                    <span className="small-text">{email}</span>
                                 </div>
                             </div>
                         }
