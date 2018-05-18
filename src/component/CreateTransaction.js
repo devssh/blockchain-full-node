@@ -1,5 +1,5 @@
 import React from 'react';
-import {Grid} from "react-bootstrap";
+import {Col} from "react-bootstrap";
 import {request} from './reducer/request';
 import SubmitButton from "./SubmitButton";
 import TextField from "./TextField";
@@ -102,8 +102,8 @@ class CreateTransaction extends React.Component {
         let {email} = this.props.state;
         return (
             <form className={"form-view"} ref={"createContractForm"}>
-                <Grid>
-                    <TextField label={"Name"} placeholder={"SampleCode30"} onKeyUp={this.updateName}/>
+                <div>
+                    <TextField label={"Name"} placeholder={"SampleCode30"} onKeyUp={this.updateName} autoFocus/>
                     <TextField label={"Product"} placeholder={""} onKeyUp={this.updateField1}
                                value={email === "forfive@gmail.com" ? "For Five Coffee Roasters" :
                                    email === "simonsips@gmail.com" ? "Simon Sips" : ""}/>
@@ -111,9 +111,11 @@ class CreateTransaction extends React.Component {
                     <TextField label={"Email1"} placeholder={""} onKeyUp={this.updateField3}/>
                     <TextField label={"Email2"} placeholder={""} onKeyUp={this.updateField4}/>
                     <TextField label={"Email3"} placeholder={""} onKeyUp={this.updateField5}/>
-                    <SubmitButton className={"create-contract-button"} value={"Create Coupon"}
-                                  onClick={this.createTransaction}/>
-                </Grid>
+                    <div className="button-container">
+                        <SubmitButton className={"btn btn-primary"} value={"Create Coupon"}
+                                onClick={this.createTransaction}/>
+                    </div>
+                </div>
 
             </form>
         );

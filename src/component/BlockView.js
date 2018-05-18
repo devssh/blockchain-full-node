@@ -19,16 +19,14 @@ class BlockView extends React.Component {
             return somestr ? somestr.split("").reverse().join("") : null;
         };
         let {match} = this.props;
-        let {sessionToken, blocks} = this.props.state;
+        let {sessionToken, blocks, email} = this.props.state;
         let block = blocks[match.params.blockDepth] || {sign: "", blockData: {previousBlockSign: ""}};
         let blockDetail = block.blockData;
 
 
         let backJSX = (
-            <div className={"back-button"}>
-                <a href={"/"}>
-                    <input type={"button"} value={"Back"}/>
-                </a>
+            <div className="button-container text-right">
+                <a href="/" className="btn btn-primary ">Back</a>
             </div>
         );
         console.log("data", blockDetail);
@@ -62,20 +60,23 @@ class BlockView extends React.Component {
 
         return (
             <div>
+                <div>
+                    <div className="header">
+                        Blockchain Full Node
+                        {
+                            sessionToken && sessionToken !== "undefined" && <div className="logout-panel">
+                                <div className="logout" onClick={this.logout} title={"Logout " + email}>
+                                    <i className="fa fa-power-off" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
                 <Grid>
-                    <Row className={"header"}>
-                        <Col md={4}>
-                        </Col>
-                        <Col md={4} className={"header-title"}>
-                            Blockchain Full Node
-                        </Col>
-                        <Col md={4}>
-                        </Col>
-                    </Row>
                     {sessionToken && sessionToken !== "undefined" ? (
                         <div className={"block-view"}>
                             {backJSX}
-                            <div className={"block-details"}>
+                            <div className={"block-details box"}>
                                 {blockDetailsJSX}
                             </div>
                         </div>

@@ -47,33 +47,32 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <form className={"login"}>
-                <Grid>
+            <form className={"login clearfix form"}>
+            <Col md={12}>
                     <Row className={"email"}>
-                        <Col md={1} className={"email-label"}>
+                        <Col md={3} className={"email-label"}>
                             Email
                         </Col>
-                        <Col md={3}>
-                            <input type="text" ref={"loginEmail"} onKeyUp={this.updateEmail} placeholder={"jane.doe"} autoFocus/>
-                        </Col>
-                        <Col md={1} className={"email-suffix"}>
-                            @gmail.com
+                        <Col md={9}>
+                            <input type="text" className="email-txt" ref={"loginEmail"} onKeyUp={this.updateEmail} placeholder={"jane.doe"} autoFocus/> @gmail.com
                         </Col>
                     </Row>
                     <Row className={"password"}>
-                        <Col md={1}>
+                        <Col md={3}>
                             Password
                         </Col>
-                        <Col md={4}>
+                        <Col md={9}>
                             <input type="password" ref={"loginPassword"} onKeyUp={this.updatePassword}
                                    placeholder={"**********"}/>
                         </Col>
                     </Row>
                     <Row className={"login-button"}>
-                        <input type="button" value="Login" onClick={this.login}/>
+                        <Col md={3}></Col>
+                        <Col md={6}>
+                            <input type="button" className="btn btn-primary" value="Login" onClick={this.login}/>
+                        </Col>
                     </Row>
-                </Grid>
-
+            </Col>
             </form>
         );
     }

@@ -42,11 +42,11 @@ class CompleteTransaction extends React.Component {
     render() {
         return (
             <form className={"form-view"} ref={"createContractForm"}>
-                <Grid>
                     <TextField label={"Scan"} placeholder={"Scan"} onKeyUp={this.updateName}/>
-                    <SubmitButton className={"create-contract-button"} value={"Redeem Coupon"}
+                    <div className="button-container">
+                        <SubmitButton className={"btn btn-primary"} value={"Redeem Coupon"}
                                   onClick={this.createTransaction}/>
-                </Grid>
+                    </div>
 
             </form>
         );

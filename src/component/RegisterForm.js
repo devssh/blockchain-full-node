@@ -47,33 +47,33 @@ class RegisterForm extends React.Component {
 
     render() {
         return (
-            <form className={"register"}>
-                <Grid>
+            <form className={"register clearfix form"}>
+                <Col md={12}>
                     <Row className={"email"}>
-                        <Col md={1} className={"email-label"}>
+                        <Col md={3} className={"email-label"}>
                             Email
                         </Col>
-                        <Col md={3}>
-                            <input type="text" ref={"registerEmail"} onChange={this.updateEmail}
-                                   placeholder={"john.doe"}/>
-                        </Col>
-                        <Col md={1} className={"email-suffix"}>
-                            @gmail.com
+                        <Col md={9}>
+                            <input className="email-txt" type="text" ref={"registerEmail"} onChange={this.updateEmail}
+                                    placeholder={"john.doe"}/> @gmail.com
                         </Col>
                     </Row>
                     <Row className={"password"}>
-                        <Col md={1}>
+                        <Col md={3}>
                             Password
                         </Col>
-                        <Col md={4}>
+                        <Col md={9}>
                             <input type="password" ref={"registerPassword"} onChange={this.updatePassword}
-                                   placeholder={"**********"}/>
+                                    placeholder={"**********"}/>
                         </Col>
                     </Row>
                     <Row className={"register-button"}>
-                        <input type="button" value="Register" onClick={this.register}/>
+                        <Col md={3}></Col>
+                        <Col md={6}>
+                            <input type="button" className="btn btn-primary" value="Register" onClick={this.register}/>
+                        </Col>
                     </Row>
-                </Grid>
+                </Col>
             </form>
         );
     }

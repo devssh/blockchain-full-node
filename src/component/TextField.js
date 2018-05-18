@@ -10,11 +10,11 @@ const TextField = ({label, placeholder, onKeyUp, type, value}) => {
     let inputType = type ? type : "text";
     let inputValue = value ? value : "";
     return (
-        <Row className={"textfield "}>
-            <Col md={1} className={"label"}>
+        <div className="textfield clearfix">
+            <Col md={2}>
                 {label}
             </Col>
-            <Col md={4}>
+            <Col md={10}>
                 <input type={inputType} onKeyUp={onKeyUp} onKeyDown={event => {
                     if (preventCharacters(event)) {
                         event.preventDefault();
@@ -23,7 +23,7 @@ const TextField = ({label, placeholder, onKeyUp, type, value}) => {
                 }}
                        placeholder={placeholder} defaultValue={inputValue}/>
             </Col>
-        </Row>
+        </div>
     );
 };
 
