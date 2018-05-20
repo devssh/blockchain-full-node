@@ -10,6 +10,8 @@ import success from "../images/success.png";
 import error from "../images/error.png";
 
 import TransactionStatus from "./TransactionStatus";
+import QrReader from 'react-qr-reader'
+
 
 class CompleteTransaction extends React.Component {
     constructor(props) {
@@ -20,14 +22,34 @@ class CompleteTransaction extends React.Component {
             field2: "",
             field3: "",
             field4: "",
-            transactionStateJSX: ""
+            transactionStateJSX: "",
         };
 
         this.updateName = this.updateName.bind(this);
         this.createTransaction = this.createTransaction.bind(this);
+        this.handleScan = this.handleScan.bind(this)
     }
 
-    createTransaction(event) {
+    handleScan(data) {
+        if (data) {
+            let scan = data.split(",");
+            this.setState({
+                name: scan[0],
+                field1: scan[1],
+                field2: scan[2],
+                field3: scan[3],
+                field4: scan[4]
+            }, () => {
+                this.createTransaction();
+            });
+        }
+    }
+
+    handleError(err) {
+        console.error(err)
+    }
+
+    createTransaction() {
         let {name, field1, field2, field3, field4} = this.state;
         if (name.trim().length > 0) {
             request('post', '/completeTransaction', {
@@ -51,13 +73,11 @@ class CompleteTransaction extends React.Component {
             });
 
         }
-        event.preventDefault();
-        event.stopPropagation();
     };
 
     updateName(event) {
         if (event.key === "Enter") {
-            this.createTransaction(event);
+            this.createTransaction();
         } else {
             let scan = event.target.value.split(',');
             this.setState({
@@ -71,8 +91,15 @@ class CompleteTransaction extends React.Component {
     }
 
     render() {
+        console.log("result", this.state)
         return (
             <div className={"form-view"} ref={"completeTransactionForm"}>
+                <QrReader
+                    delay={this.state.delay}
+                    onError={this.handleError}
+                    onScan={this.handleScan}
+                    style={{width: '50%'}}
+                />
                 <TextField label={"Scan"} type="password" placeholder={"Scan"} onKeyUp={this.updateName}
                            removeActive={false} autofocus={true}/>
                 <div className="button-container">
