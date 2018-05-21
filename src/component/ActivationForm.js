@@ -52,7 +52,7 @@ class ActivationForm extends React.Component {
                             Email
                         </Col>
                         <Col md={9}>
-                            <input type="text" ref={"loginEmail"} onChange={this.updateEmail} placeholder={"jane.doe"}/> @gmail.com
+                            <input type="text" className="email-txt" ref={"loginEmail"} onChange={this.updateEmail} placeholder={"jane.doe"}/> @gmail.com
                         </Col>
                     </Row>
                     <Row className={"password"}>
@@ -67,7 +67,7 @@ class ActivationForm extends React.Component {
                     <Row className={"login-button"}>
                         <Col md={3}></Col>
                         <Col md={6}>
-                            <input type="button" value="Activate account" onClick={this.activate}/>
+                            <input type="button" className="btn btn-primary"  value="Activate account" onClick={this.activate}/>
                         </Col>
                     </Row>
                 </Grid>

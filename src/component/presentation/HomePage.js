@@ -46,7 +46,9 @@ class HomePage extends React.Component {
                         <Row className="body">
                                 {props.state.login.activation && props.state.login.activation !== "" ? (
                                     <div className="toggle-btn">
-                                        <label htmlFor="toggle" className="btn1 btn btn-grey">Login</label>
+                                        <input type="checkbox" id="toggle"/>
+                                        <label htmlFor="toggle" className="btn1 btn btn-grey">Activate</label>
+                                        
                                         <div className="content1 toggle-content">
                                             <ActivationForm {...props}/>
                                         </div>
