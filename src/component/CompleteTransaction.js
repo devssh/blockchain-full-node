@@ -23,6 +23,7 @@ class CompleteTransaction extends React.Component {
             field3: "",
             field4: "",
             transactionStateJSX: "",
+            delay: 3000
         };
 
         this.updateName = this.updateName.bind(this);
@@ -91,7 +92,6 @@ class CompleteTransaction extends React.Component {
     }
 
     render() {
-        console.log("result", this.state)
         return (
             <div className={"form-view"} ref={"completeTransactionForm"}>
                 <QrReader
