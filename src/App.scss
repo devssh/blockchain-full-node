@@ -90,6 +90,7 @@ h3 {
   &.col-md-6 {
     width: calc(50% - 20px);
     height: 550px;
+    overflow-y: auto;
   }
 }
 
@@ -129,10 +130,7 @@ h3 {
   margin-left: calc(50% - 20px);
   color: #666;
 }
-.block-container {
-  max-height: 480px;
-  overflow-y: auto;
-}
+
 .text-right {
   text-align: right;
 }
@@ -202,6 +200,13 @@ h3 {
   .box {
     &.col-md-6 {
       width: 100%;
+      overflow-y: visible;
+      height: auto;
     }
   }
+}
+
+.qr-reader {
+  max-width: 50%;
+  margin: 0 auto;
 }

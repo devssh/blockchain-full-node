@@ -98,7 +98,7 @@ class CompleteTransaction extends React.Component {
                     delay={this.state.delay}
                     onError={this.handleError}
                     onScan={this.handleScan}
-                    style={{width: '50%'}}
+                    className="qr-reader"
                 />
                 <TextField label={"Scan"} type="password" placeholder={"Scan"} onKeyUp={this.updateName}
                            removeActive={false} autofocus={true}/>
@@ -106,15 +106,14 @@ class CompleteTransaction extends React.Component {
                     <SubmitButton className={"btn btn-primary"} value={"Redeem Coupon"}
                                   onClick={this.createTransaction}/>
                 </div>
+                {this.state.transactionStateJSX}
                 <div>
-
                     <Display value={this.state.name} label={"Name"}/>
                     <Display value={this.state.field1} label={"Product"}/>
                     <Display value={this.state.field2} label={"Discount"}/>
                     <Display value={this.state.field3} label={"Email"}/>
                     <Display value={this.state.field4} label={"Code"}/>
                 </div>
-                {this.state.transactionStateJSX}
             </div>
         );
     }
