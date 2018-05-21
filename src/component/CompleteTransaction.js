@@ -22,8 +22,7 @@ class CompleteTransaction extends React.Component {
             field2: "",
             field3: "",
             field4: "",
-            transactionStateJSX: "",
-            delay: 3000
+            transactionStateJSX: ""
         };
 
         this.updateName = this.updateName.bind(this);
@@ -87,6 +86,8 @@ class CompleteTransaction extends React.Component {
                 field2: scan[2],
                 field3: scan[3],
                 field4: scan[4]
+            }, ()=>{
+                this.createTransaction();
             });
         }
     }
