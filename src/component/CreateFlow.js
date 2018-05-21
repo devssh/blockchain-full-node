@@ -72,11 +72,11 @@ class CreateFlow extends React.Component {
         return(
           <Grid>
             <Row className="flex">
-              <Col md={6} className="box">
+              <Col md={6} sm={12} className="box">
                 <h3> Create Coupon </h3>
                 <CreateTransaction {...props}/>
               </Col>
-              <Col md={6} className="box">
+              <Col md={6} sm={12} className="box">
                 <h3> Block Explorer </h3>
                 <div className="block-container">
                   {blocksJSX}

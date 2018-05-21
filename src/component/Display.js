@@ -6,10 +6,10 @@ const Display = (props) => {
     let inputValue = value ? value : " ";
     return (
         <div className="textfield clearfix">
-            <Col md={2}>
+            <Col xs={2}>
                 {label}
             </Col>
-            <Col md={10} className="border">
+            <Col xs={10} className="border">
                 {inputValue}
             </Col>
         </div>

@@ -51,7 +51,7 @@ class RedeemFlow extends React.Component {
                 );
             }
             transactionsJSX.push(
-                <div className={"transaction"} key={transaction.name}>
+                <div className={"transaction"} key={i}>
                     {transaction.contractName} - {moment(removeZone(transaction.createdAt)).fromNow()}
                     <div>
                         <div className={"transaction-address"}>Block Depth: {transaction.address.blockDepth} </div>

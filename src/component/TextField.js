@@ -12,10 +12,10 @@ const TextField = (props) => {
     let inputValue = value ? value : "";
     return (
         <div className="textfield clearfix">
-            <Col md={2}>
+            <Col xs={2}>
                 {label}
             </Col>
-            <Col md={10}>
+            <Col xs={10} className="border" >
                 <input type={inputType} onKeyUp={onKeyUp} onKeyDown={event => {
                     if (removeActive && preventCharacters(event)) {
                         event.preventDefault();
