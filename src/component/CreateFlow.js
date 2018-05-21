@@ -14,7 +14,7 @@ class CreateFlow extends React.Component {
     }
 
     componentDidMount() {
-        let {email, sessionToken, setBlocks, setContracts, setTransactions} = this.props.state;
+        let {email, sessionToken, setBlocks, setContracts, setTransactions, setSessionToken} = this.props.state;
         request('post', '/blocks', {
             email: email,
             sessionToken: sessionToken
@@ -34,6 +34,8 @@ class CreateFlow extends React.Component {
     render() {
         let props = this.props;
         let {role} = this.props.state;
+        console.log("pro",this.props);
+        console.log("st",this.state);
         let removeZone = (somedatetime) => {
             return somedatetime.split("[")[0];
         };

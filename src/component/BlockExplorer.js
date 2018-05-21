@@ -54,6 +54,8 @@ class BlockExplorer extends React.Component {
     render() {
         let props = this.props;
         let {role} = this.props.state;
+        console.log("pro",this.props);
+        console.log("st",this.state);
         let removeZone = (somedatetime) => {
             return somedatetime.split("[")[0];
         };

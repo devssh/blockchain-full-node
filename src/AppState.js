@@ -26,7 +26,7 @@ class App extends React.Component {
             setView: this.setView,
             login: "",
             role: localStorage.getItem('role') === "undefined" ? "" : localStorage.getItem('role') || "",
-            sessionToken: localStorage.getItem('sessionToken') === "undefined" ? "" : localStorage.getItem('email') || "",
+            sessionToken: localStorage.getItem('sessionToken') === "undefined" ? "" : localStorage.getItem('sessionToken') || "",
             email: localStorage.getItem('email') || "",
             blocks: "",
             contracts: "",
@@ -50,8 +50,10 @@ class App extends React.Component {
 
     setLogin(value) {
         if (value.activation || value.activation === "") {
+            console.log("value1",value)
             this.setState({login: value});
         } else if (value.sessionToken !== "undefined") {
+            console.log("value2", value)
             this.setState({sessionToken: value.sessionToken, role: value.role});
             localStorage.setItem('sessionToken', value.sessionToken);
             localStorage.setItem('role', value.role);
