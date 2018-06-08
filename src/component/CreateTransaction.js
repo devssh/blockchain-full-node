@@ -13,7 +13,8 @@ class CreateTransaction extends React.Component {
             field2: "",
             field3: "",
             field4: "",
-            field5: ""
+            field5: "",
+            field6: "$"
         };
 
         this.updateName = this.updateName.bind(this);
@@ -26,16 +27,16 @@ class CreateTransaction extends React.Component {
     }
 
     createTransaction(event) {
-        let {name, field1, field2, field3, field4, field5} = this.state;
+        let {name, field1, field2, field3, field4, field5, field6} = this.state;
         if (name.trim().length > 0) {
             request('post', '/createTransaction', {
                 name: name,
-                fields: [field1, field2, field3, field4, field5],
+                fields: [field1, field2, field3, field4, field5, field6],
                 email: this.props.state.email,
                 sessionToken: this.props.state.sessionToken
             }, (data) => {
             });
-            this.setState({name: "", field1: "", field2: "", field3: "", field4: "", field5: ""});
+            this.setState({name: "", field1: "", field2: "", field3: "", field4: "", field5: "", field6: ""});
             this.refs.createContractForm.reset();
 
         }
@@ -97,6 +98,7 @@ class CreateTransaction extends React.Component {
             this.setState({field5: event.target.value});
         }
     }
+
 
     render() {
         let {email} = this.props.state;

@@ -43,13 +43,20 @@ class RedeemFlow extends React.Component {
         for (let i = transactionNames.length - 1; i > -1; i--) {
             let transactionKey = transactionNames[i], transaction = transactions[transactionKey];
             let transactionValuesJSX = [];
-            for (let j = 0; j < transaction.values.length; j++) {
-                transactionValuesJSX.push(
-                    <div className={"transaction-field"} key={transaction.values[j]}>
-                        {transaction.values[j]}
-                    </div>
-                );
-            }
+            transactionValuesJSX.push(
+                <div>
+                <div className={"transaction-field"} key={transaction.coupon.product} >
+                  Product Name : {transaction.coupon.product}
+                </div>
+                <div className={"transaction-field"} key={transaction.coupon.discount} >
+                  Discount : {transaction.coupon.discount} {transaction.coupon.type}
+                </div>
+                  <div className={"transaction-field"} >
+                    Email IDs : {transaction.coupon.mails.toString()}
+                  </div>
+                </div>
+            );
+
             transactionsJSX.push(
                 <div className={"transaction"} key={i}>
                     {transaction.contractName} - {moment(removeZone(transaction.createdAt)).fromNow()}

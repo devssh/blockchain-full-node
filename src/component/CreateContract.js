@@ -35,7 +35,7 @@ class CreateContract extends React.Component {
                 sessionToken: this.props.state.sessionToken
             }, (data) => {
             });
-            this.setState({name: "", field1: "", field2: "", field3: "", field4: "", field5: ""});
+            this.setState({name: "", field1: "", field2: "", field3: "", field4: "", field5: "", field6: ""});
             this.refs.createContractForm.reset();
 
         }
@@ -98,6 +98,17 @@ class CreateContract extends React.Component {
         }
     }
 
+
+    updateField6(event) {
+        if (event.key === "Enter") {
+            // this.login(event);
+            event.preventDefault();
+        } else {
+            this.setState({field6: event.target.value});
+        }
+    }
+
+
     render() {
         return (
             <form className={"form-view"} ref={"createContractForm"}>
@@ -108,6 +119,7 @@ class CreateContract extends React.Component {
                     <TextField label={"Field3"} placeholder={""} onKeyUp={this.updateField3}/>
                     <TextField label={"Field4"} placeholder={""} onKeyUp={this.updateField4}/>
                     <TextField label={"Field5"} placeholder={""} onKeyUp={this.updateField5}/>
+                    <TextField label={"Field6"} placeholder={""} onKeyUp={this.updateField6}/>
                     <SubmitButton className={"create-contract-button"} value={"Create Contract"}
                                   onClick={this.createContract}/>
                 </Grid>
