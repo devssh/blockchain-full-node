@@ -109,7 +109,7 @@ class CreateTransaction extends React.Component {
                     <TextField label={"Product"} placeholder={""} onKeyUp={this.updateField1}
                                value={email === "forfive@gmail.com" ? "For Five Coffee Roasters" :
                                    email === "simonsips@gmail.com" ? "Simon Sips" : ""}/>
-                    <TextField label={"Discount"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
+                    <TextField label={"Discount (In $)"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
                     <TextField label={"Email1"} placeholder={""} onKeyUp={this.updateField3}/>
                     <TextField label={"Email2"} placeholder={""} onKeyUp={this.updateField4}/>
                     <TextField label={"Email3"} placeholder={""} onKeyUp={this.updateField5}/>
