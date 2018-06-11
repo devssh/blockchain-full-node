@@ -75,6 +75,9 @@ class CreateTransaction extends React.Component {
             } else if (value.endsWith("%")) {
                 this.setState({field6: '%'});
                 this.setState({field2: value.substring(0, value.length - 1)});
+            } else {
+                this.setState({field6: '$'});
+                this.setState({field2: value});
             }
 
         }
