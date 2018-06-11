@@ -22,6 +22,7 @@ class CompleteTransaction extends React.Component {
             field2: "",
             field3: "",
             field4: "",
+            field5: "",
             transactionStateJSX: ""
         };
 
@@ -35,10 +36,11 @@ class CompleteTransaction extends React.Component {
             let scan = data.split(",");
             this.setState({
                 name: scan[0],
-                field1: scan[1],
-                field2: scan[2],
-                field3: scan[3],
-                field4: scan[4]
+                field1: scan[1], //product name
+                field2: scan[2], // discount
+                field5: scan[3], //type
+                field3: scan[4], //email
+                field4: scan[5] //scan
             }, () => {
                 this.createTransaction();
             });
@@ -50,11 +52,11 @@ class CompleteTransaction extends React.Component {
     }
 
     createTransaction() {
-        let {name, field1, field2, field3, field4} = this.state;
+        let {name, field1, field2, field3, field5, field4} = this.state;
         if (name.trim().length > 0) {
             request('post', '/completeTransaction', {
                 name: name,
-                fields: [field1, field2, field3, field4],
+                fields: [field1, field2, field3, field5, field4],
                 email: this.props.state.email,
                 sessionToken: this.props.state.sessionToken
             }, (data) => {
@@ -84,8 +86,9 @@ class CompleteTransaction extends React.Component {
                 name: scan[0],
                 field1: scan[1],
                 field2: scan[2],
-                field3: scan[3],
-                field4: scan[4]
+                field5: scan[3],
+                field3: scan[4],
+                field4: scan[5]
             }, ()=>{
                 this.createTransaction();
             });

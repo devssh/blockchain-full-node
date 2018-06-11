@@ -68,7 +68,15 @@ class CreateTransaction extends React.Component {
             // this.login(event);
             event.preventDefault();
         } else {
-            this.setState({field2: event.target.value});
+            var value = '' + event.target.value;
+            if (value.startsWith("$")) {
+                this.setState({field2: value.substring(1, value.length)});
+                this.setState({field6: '$'});
+            } else if (value.endsWith("%")) {
+                this.setState({field6: '%'});
+                this.setState({field2: value.substring(0, value.length - 1)});
+            }
+
         }
     }
 
@@ -105,11 +113,11 @@ class CreateTransaction extends React.Component {
         return (
             <form className={"form-view"} ref={"createContractForm"}>
                 <div>
-                    <TextField label={"Name"} placeholder={"SampleCode30"} onKeyUp={this.updateName} autoFocus/>
+                    <TextField required label={"Name"} placeholder={"SampleCode30"} onKeyUp={this.updateName} autoFocus/>
                     <TextField label={"Product"} placeholder={""} onKeyUp={this.updateField1}
                                value={email === "forfive@gmail.com" ? "For Five Coffee Roasters" :
                                    email === "simonsips@gmail.com" ? "Simon Sips" : ""}/>
-                    <TextField label={"Discount (In $)"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
+                    <TextField label={"Discount"} placeholder={""} onKeyUp={this.updateField2}/>
                     <TextField label={"Email1"} placeholder={""} onKeyUp={this.updateField3}/>
                     <TextField label={"Email2"} placeholder={""} onKeyUp={this.updateField4}/>
                     <TextField label={"Email3"} placeholder={""} onKeyUp={this.updateField5}/>
