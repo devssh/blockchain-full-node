@@ -1,5 +1,4 @@
 import React from 'react';
-import {Grid, Col} from "react-bootstrap";
 import {request} from './reducer/request';
 import SubmitButton from "./SubmitButton";
 import TextField from "./TextField";
