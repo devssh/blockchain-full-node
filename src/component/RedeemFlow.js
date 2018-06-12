@@ -1,17 +1,15 @@
 import React from 'react';
 import {request} from "./reducer/request";
 import {Grid, Col, Row} from "react-bootstrap";
-import CreateContract from "./CreateContract";
 import moment from "moment";
-import CreateTransaction from "./CreateTransaction";
 import CompleteTransaction from "./CompleteTransaction";
+import {get_discount} from "./utils/DiscountUtil";
 
 class RedeemFlow extends React.Component {
 
     constructor(props) {
         super(props);
         this.interval = "";
-        this.get_discount = this.get_discount.bind(this);
     }
 
     componentDidMount() {
@@ -44,8 +42,6 @@ class RedeemFlow extends React.Component {
         for (let i = transactionNames.length - 1; i > -1; i--) {
             let transactionKey = transactionNames[i], transaction = transactions[transactionKey];
             let transactionValuesJSX = [];
-            let discount = transaction.coupon.discount
-          discount = this.get_discount(transaction, discount);
 
             transactionValuesJSX.push(
                 <div>
@@ -53,7 +49,7 @@ class RedeemFlow extends React.Component {
                   Product Name : {transaction.coupon.product}
                 </div>
                 <div className={"transaction-field"} key={transaction.coupon.discount} >
-                  Discount : {discount}
+                  Discount : {get_discount(transaction.coupon.type, transaction.coupon.discount)}
                 </div>
                   <div className={"transaction-field"} >
                     Email IDs : {transaction.coupon.mails.toString()}
@@ -90,16 +86,6 @@ class RedeemFlow extends React.Component {
           </Grid>
         );
     }
-
-    get_discount(transaction, discount) {
-      if (transaction.coupon.type == '$') {
-        discount = transaction.coupon.type + discount
-      } else if (transaction.coupon.type == '%') {
-        discount = discount + transaction.coupon.type
-      }
-      return discount;
-    }
-
 }
 
 export default RedeemFlow;

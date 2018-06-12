@@ -11,7 +11,7 @@ import error from "../images/error.png";
 
 import TransactionStatus from "./TransactionStatus";
 import QrReader from 'react-qr-reader'
-
+import {get_discount} from "./utils/DiscountUtil";
 
 class CompleteTransaction extends React.Component {
     constructor(props) {
@@ -114,7 +114,7 @@ class CompleteTransaction extends React.Component {
                 <div>
                     <Display value={this.state.name} label={"Name"}/>
                     <Display value={this.state.field1} label={"Product"}/>
-                    <Display value={this.state.field2} label={"Discount"}/>
+                    <Display value={get_discount(this.state.field5,this.state.field2)} label={"Discount"}/>
                     <Display value={this.state.field3} label={"Email"}/>
                     <Display value={this.state.field4} label={"Code"}/>
                 </div>
