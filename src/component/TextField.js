@@ -12,18 +12,22 @@ const TextField = (props) => {
     let inputValue = value ? value : "";
     return (
         <div className="textfield clearfix">
-            <Col xs={4} md={2}>
+            <div className="row">
+            <div className="col-md-4 col-md-offset-3 text-field-label">
                 {label}
-            </Col>
-            <Col xs={8} md={10} className="border" >
-                <input type={inputType} onKeyUp={onKeyUp} onKeyDown={event => {
+            </div>
+            </div>
+            <div className="row">
+            <div className=" col-md-6 col-md-offset-3" >
+                <input className="text-field-input" type={inputType} onKeyUp={onKeyUp} onKeyDown={event => {
                     if (removeActive && preventCharacters(event)) {
                         event.preventDefault();
                         event.stopPropagation();
                     }
                 }}  disabled={disabled}
                        placeholder={placeholder} defaultValue={inputValue} autoFocus={autofocus}/>
-            </Col>
+            </div>
+            </div>
         </div>
     );
 };

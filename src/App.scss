@@ -1,3 +1,64 @@
+.blockchain-image {
+  width: 100%;
+  height: 447px;
+}
+
+.blockchain-full-node {
+  width: 362px;
+  height: 40px;
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 62%;
+  width: 100%;
+  align-content: center;
+}
+
+.divider {
+  height: 32px;
+  background-color: #000000;;
+  .divider-line {
+    width: 139px;
+    height: 2px;
+    border: solid 1px #80807e;
+    position: absolute;
+    top: 72%;
+    left: 45%;
+  }
+}
+
+.nav-item {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #80807e;
+  padding: 13px 44px 19px 44px;
+}
+
+.nav-item:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.redeem-button {
+  float: right;
+  padding-right: 15%;
+  .redeem-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+  }
+}
+
 input {
   width: 100%;
   border: none;
@@ -5,6 +66,7 @@ input {
     width: 74%;
   }
 }
+
 .toggle-btn {
   max-width: 500px;
   margin: auto;
@@ -12,10 +74,12 @@ input {
     margin: 0px;
   }
 }
+
 .selected {
   background: dodgerblue;
   color: white;
 }
+
 .btn {
   border: 1px solid #CCC;
   padding: 10px;
@@ -39,6 +103,7 @@ input {
   border: 1px solid #CCC;
   padding: 20px;
 }
+
 #toggle {
   opacity: 0;
   &:not(:checked) ~ .btn1 {
@@ -55,7 +120,6 @@ input {
   }
 }
 
-
 .form {
   .row {
     margin-bottom: 20px;
@@ -64,14 +128,22 @@ input {
     }
   }
 }
-.header {
-  background: dodgerblue;
-  padding: 20px;
-  margin-bottom: 30px;
+
+.navigation-bar {
+  width: 100%;
+  background: #000000;
   text-align: center;
   font-size: 2em;
   color: #FFF;
   position: relative;
+  padding-left: 200px;
+  height: 55px;
+
+  &.fixed-nav {
+    position: fixed;
+    top: 0;
+    z-index:1000;
+  }
 }
 
 .textfield {
@@ -82,8 +154,9 @@ h3 {
   margin: 0;
   margin-bottom: 10px;
 }
+
 .box {
-  box-shadow: 0px 0px 1px rgba(0,0,0,0.4);
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.4);
   padding: 20px;
   border-radius: 5px;
   margin: 10px;
@@ -99,30 +172,71 @@ h3 {
 }
 
 .logout {
-  position: absolute;
-  right: 20px;
-  top: 10px;
   cursor: pointer;
 }
 
+.logout-icon {
+  color: #bfc0bb;
+  font-size: 16px;
+}
+
+.logout-panel {
+  display: inline-block;
+  float: right;
+  padding-right: 32px;
+}
+
+.block-container {
+  max-height: 520px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+}
 
 .block {
   border: 1px solid #ccc;
   padding: 10px;
+  opacity: 0.49;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: solid 1px #323532;
+}
+
+.block:hover {
+  border: solid 1px #ffffff;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
 .block-preview {
   display: inline-block;
   font-size: 12px;
-  padding-left:15px;
   min-width: 20%;
-  padding-right:15px;
+  padding-right: 15px;
+  padding-left: 9%;
+  color: #ffffff;
+}
+
+.block-preview-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #80807e;
 }
 
 .block-data {
   margin-left: 10px;
   padding: 3px;
   display: inline-block;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.1px;
+  color: #ffffff;
 }
 
 .block-link {
@@ -140,57 +254,87 @@ h3 {
   font-size: 16px;
   width: 126px;
 }
+
 .block-detail {
   margin-bottom: 10px;
 }
+
 .huge-block-data {
-  font-size: 0.9em; 
+  font-size: 0.9em;
 }
 
 .flex {
   display: flex;
 }
 
-
 .transaction {
-  border: 1px solid #ddd;
+  border: solid 2px #ffffff;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background-color: rgba(0, 0, 0, 0.9);
 }
 
-.contract-field, .transaction-field {
-  margin-left: 20px;
+.transaction-title{
+  padding-left: 20px;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.1px;
+  color: #ffffff;
 }
-
-.contract-address, .transaction-address {
+.transaction-label{
   display: inline-block;
-  padding-left:10px;
-  padding-right:10px;
+  padding-left: 30px;
+  padding-right: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #80807e;
 }
+.transaction-field{
+  display: inline-block;
+  padding-left: 30px;
+  padding-right: 10px;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.1px;
+  color: #ffffff;
+}
+
 .small-text {
   font-size: 12px;
-  display: block;
+  padding-left: 9px;
+  color: #bfc0bb;
+  text-align: right;
 }
 
 .border {
-  border: 1px solid #ccc;
-  min-height: 26px;
+  background-color: #373737;
 }
 
 .transactionState {
   padding: 10px;
- &.failure {
-   background: #FDBF2D;
-   color: #FFF;
- }
- &.success {
-  background: #19AF54;
-  color: #FFF;
- }
- &.doublespenddetected {
-  background: #FC0D1B;
-  color: #FFF;
- }
+  &.failure {
+    background: #FDBF2D;
+    color: #FFF;
+  }
+  &.success {
+    background: #19AF54;
+    color: #FFF;
+  }
+  &.doublespenddetected {
+    background: #FC0D1B;
+    color: #FFF;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -204,19 +348,120 @@ h3 {
       height: auto;
     }
   }
-  .header {
+  .navigation-bar {
     font-size: 1.5em;
     text-align: left;
+    height: 55px;
   }
   .logout {
-    text-align: center;
+    float: right;
   }
   input.email-txt {
     max-width: 73%;
   }
 }
 
-.qr-reader {
-  max-width: 50%;
+.section-label {
+  text-align: center;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #ffffff;
+  margin-bottom: 25px;
+}
+
+.section-icon {
+  display: block;
   margin: 0 auto;
+  margin-bottom: 25px;
+}
+
+#section-1 {
+  margin-top: 25px;
+}
+
+#section-2 {
+  margin-top: 25px;
+}
+
+#section-3 {
+  margin-top: 25px;
+}
+
+.text-field-label {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #bfc0bb;
+  margin-bottom: 3px;
+}
+
+.scan-input::placeholder {
+  width: 170px;
+  height: 15px;
+  font-family: HelveticaNeue;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: -0.1px;
+  color: white;
+
+  margin-left: 5px;
+}
+
+.text-field-input {
+  padding-left: 10px;
+  background-color: #373737;
+  width: 100%;
+  color: #ffffff;
+}
+
+.grid-cont {
+  background-color: #191e21;
+}
+
+.add-email-address {
+  color: #3e7bd8;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.section-divider {
+  height: 1px;
+  background-color: #000000;
+}
+
+.block-union-symbol {
+  width: 11px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.login-page{
+  background-color: #FFFFFF;
+}
+
+.create-coupan {
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.is-current{
+  border-bottom: 2px solid #ffffff;;
+}
+
+.footer {
+  width: 100%;
+  height: 120px;
+  background-color: #000000;
+  display: block;
 }

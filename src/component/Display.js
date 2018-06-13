@@ -5,13 +5,9 @@ const Display = (props) => {
     let {label, value} = props;
     let inputValue = value ? value : " ";
     return (
-        <div className="textfield clearfix">
-            <Col xs={4} md={2}>
-                {label}
-            </Col>
-            <Col xs={8} md={10} className="border">
-                {inputValue}
-            </Col>
+        <div className="coupon-info-item">
+            <p>{label}</p>
+            <div>{inputValue}</div>
         </div>
     );
 };

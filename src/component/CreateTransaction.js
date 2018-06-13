@@ -22,7 +22,6 @@ class CreateTransaction extends React.Component {
         this.updateField2 = this.updateField2.bind(this);
         this.updateField3 = this.updateField3.bind(this);
         this.updateField4 = this.updateField4.bind(this);
-        this.updateField5 = this.updateField5.bind(this);
         this.createTransaction = this.createTransaction.bind(this);
     }
 
@@ -101,32 +100,27 @@ class CreateTransaction extends React.Component {
         }
     }
 
-    updateField5(event) {
-        if (event.key === "Enter") {
-            // this.login(event);
-            event.preventDefault();
-        } else {
-            this.setState({field5: event.target.value});
-        }
-    }
-
 
     render() {
         let {email} = this.props.state;
         return (
             <form className={"form-view"} ref={"createContractForm"}>
                 <div>
-                    <TextField required label={"Name"} placeholder={"SampleCode30"} onKeyUp={this.updateName} autoFocus/>
-                    <TextField label={"Product"} placeholder={""} onKeyUp={this.updateField1}
+                    <TextField label={"NAME"} placeholder={"SampleCode30"} onKeyUp={this.updateName} autoFocus/>
+                    <TextField label={"PRODUCT"} placeholder={""} onKeyUp={this.updateField1}
                                value={email === "forfive@gmail.com" ? "For Five Coffee Roasters" :
                                    email === "simonsips@gmail.com" ? "Simon Sips" : ""}/>
-                    <TextField label={"Discount"} placeholder={""} onKeyUp={this.updateField2}/>
-                    <TextField label={"Email1"} placeholder={""} onKeyUp={this.updateField3}/>
-                    <TextField label={"Email2"} placeholder={""} onKeyUp={this.updateField4}/>
-                    <TextField label={"Email3"} placeholder={""} onKeyUp={this.updateField5}/>
+                    <TextField label={"DISCOUNT (In $)"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
+                    <TextField label={"PRIMARY EMAIL ADDRESS"} placeholder={""} onKeyUp={this.updateField3}/>
+                    <TextField label={"ALTERNATE EMAIL ADDRESS"} placeholder={""} onKeyUp={this.updateField4}/>
+                    <div className="row">
+                        <div className="col-md-4 col-md-offset-3 text-field-label add-email-address">
+                            + Add email address
+                        </div>
+                    </div>
                     <div className="button-container">
-                        <SubmitButton className={"btn btn-primary"} value={"Create Coupon"}
-                                onClick={this.createTransaction}/>
+                        <SubmitButton className={"btn btn-primary create-coupan"} value={"Submit"}
+                                      onClick={this.createTransaction}/>
                     </div>
                 </div>
 

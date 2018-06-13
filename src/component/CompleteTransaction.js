@@ -65,14 +65,14 @@ class CompleteTransaction extends React.Component {
                         <TransactionStatus className="success" imgsrc={success} label="Coupon is approved"/>;
                 } else if (data.complete === false) {
                     transactionStateJSX = <TransactionStatus className="failure" imgsrc={failure}
-                                                             label="Something went wrong. Please try again later."/>;
+                                                             label="Coupon has expired"/>;
                 } else if (data.complete.toLowerCase() === "doublespenddetected") {
                     transactionStateJSX =
-                        <TransactionStatus className="doublespenddetected" imgsrc={error} label="Coupon has expired"/>;
+                        <TransactionStatus className="error" imgsrc={error}
+                                           label="Something went wrong. Please try again later."/>;
                 }
                 this.setState({transactionStateJSX})
             });
-
         }
     };
 
@@ -96,28 +96,46 @@ class CompleteTransaction extends React.Component {
 
     render() {
         return (
-            <div className={"form-view"} ref={"completeTransactionForm"}>
-                <QrReader
-                    delay={this.state.delay}
-                    onError={this.handleError}
-                    onScan={this.handleScan}
-                    className="qr-reader"
-                />
-                <TextField label={"Scan"} type="password" placeholder={"Scan"} onKeyUp={this.updateName}
-                           removeActive={false} autofocus={true}/>
-                <div className="button-container">
-                    <SubmitButton className={"btn btn-primary"} value={"Redeem Coupon"}
-                                  onClick={this.createTransaction}/>
+            <div className="complete-transaction-form-view" ref={"completeTransactionForm"}>
+                <div className="redeem-wrapper">
+                        <div className="redeem-icon"></div>
+                        <p className="redeem-title"> Scan Coupon </p>
+
+                    <div className="qr-wrapper">
+                        {<QrReader
+                            delay={this.state.delay}
+                            onError={this.handleError}
+                            onScan={this.handleScan}
+                            className="qr-reader"
+                        />}
+                        {this.state.transactionStateJSX !== "" && this.state.transactionStateJSX}
+                        {/*<div className="transaction-status">*/}
+                        {/*<div className="error">*/}
+                        {/*<img src={error}/>*/}
+                        {/*<div className="status-label"><span>Coupon is approved!</span></div>*/}
+                        {/*</div>*/}
+                        {/*</div>*/}
+                    </div>
+
+                    <TextField label={"Scan"} type="password" placeholder={"Scan information goes here..."}
+                               onKeyUp={this.updateName}
+                               removeActive={false} autofocus={true}/>
+                    <div className="button-container">
+                        <SubmitButton className={"btn btn-primary btn-redeem-coupon"} value={"Redeem Coupon"}
+                                      onClick={this.createTransaction}/>
+                    </div>
+                    <div>
+                        <Display value={this.state.name} label={"Name"}/>
+                        <Display value={this.state.field1} label={"Product"}/>
+                        <Display value={get_discount(this.state.field5,this.state.field2)} label={"Discount"}/>
+                        <Display value={this.state.field3} label={"Email"}/>
+                        <Display value={this.state.field4} label={"Code"}/>
+                    </div>
                 </div>
-                {this.state.transactionStateJSX}
-                <div>
-                    <Display value={this.state.name} label={"Name"}/>
-                    <Display value={this.state.field1} label={"Product"}/>
-                    <Display value={get_discount(this.state.field5,this.state.field2)} label={"Discount"}/>
-                    <Display value={this.state.field3} label={"Email"}/>
-                    <Display value={this.state.field4} label={"Code"}/>
-                </div>
+
+
             </div>
+
         );
     }
 }
