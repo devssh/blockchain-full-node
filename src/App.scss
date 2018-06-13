@@ -1,32 +1,37 @@
+
+.header {
+  height: 357px;
+  background: url(/static/media/main-background.1d329055.png) no-repeat scroll center top transparent;
+  background-size: cover;
+  position: relative;
+}
+
 .blockchain-image {
   width: 100%;
   height: 447px;
 }
 
 .blockchain-full-node {
-  width: 362px;
-  height: 40px;
   font-size: 40px;
-  line-height: 1;
-  letter-spacing: 0.8px;
   color: #ffffff;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
   position: absolute;
-  top: 62%;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  align-content: center;
+  text-align: center;
+  margin-bottom: 0;
 }
 
 .divider {
-  height: 32px;
-  background-color: #000000;;
+  height: 40px;
+  background-color: #000000;
+  padding-top: 20px;
   .divider-line {
     width: 139px;
     height: 2px;
     border: solid 1px #80807e;
-    position: absolute;
-    top: 72%;
-    left: 45%;
+    margin: 0 auto;
   }
 }
 
@@ -50,12 +55,14 @@
 }
 
 .redeem-button {
-  float: right;
-  padding-right: 15%;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
   .redeem-icon {
     cursor: pointer;
-    position: absolute;
-    top: 45%;
+    &.cursor-none {
+      cursor: default;
+    }
   }
 }
 
@@ -142,7 +149,7 @@ input {
   &.fixed-nav {
     position: fixed;
     top: 0;
-    z-index:1000;
+    z-index: 1000;
   }
 }
 
@@ -186,59 +193,6 @@ h3 {
   padding-right: 32px;
 }
 
-.block-container {
-  max-height: 520px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  width: 100%;
-}
-
-.block {
-  border: 1px solid #ccc;
-  padding: 10px;
-  opacity: 0.49;
-  background-color: rgba(0, 0, 0, 0.6);
-  border: solid 1px #323532;
-}
-
-.block:hover {
-  border: solid 1px #ffffff;
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.block-preview {
-  display: inline-block;
-  font-size: 12px;
-  min-width: 20%;
-  padding-right: 15px;
-  padding-left: 9%;
-  color: #ffffff;
-}
-
-.block-preview-label {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #80807e;
-}
-
-.block-data {
-  margin-left: 10px;
-  padding: 3px;
-  display: inline-block;
-  font-size: 13px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.1px;
-  color: #ffffff;
-}
-
 .block-link {
   margin-top: -4px;
   margin-left: calc(50% - 20px);
@@ -249,16 +203,6 @@ h3 {
   text-align: right;
 }
 
-.block-detail-label {
-  display: inline-block;
-  font-size: 16px;
-  width: 126px;
-}
-
-.block-detail {
-  margin-bottom: 10px;
-}
-
 .huge-block-data {
   font-size: 0.9em;
 }
@@ -267,40 +211,8 @@ h3 {
   display: flex;
 }
 
-.transaction {
-  border: solid 2px #ffffff;
-  padding: 10px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  background-color: rgba(0, 0, 0, 0.9);
-}
-
-.transaction-title{
+.transaction-title {
   padding-left: 20px;
-  font-size: 13px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: -0.1px;
-  color: #ffffff;
-}
-.transaction-label{
-  display: inline-block;
-  padding-left: 30px;
-  padding-right: 10px;
-  font-size: 11px;
-  font-weight: 600;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #80807e;
-}
-.transaction-field{
-  display: inline-block;
-  padding-left: 30px;
-  padding-right: 10px;
   font-size: 13px;
   font-weight: normal;
   font-style: normal;
@@ -370,25 +282,13 @@ h3 {
   line-height: normal;
   letter-spacing: normal;
   color: #ffffff;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .section-icon {
   display: block;
   margin: 0 auto;
-  margin-bottom: 25px;
-}
-
-#section-1 {
-  margin-top: 25px;
-}
-
-#section-2 {
-  margin-top: 25px;
-}
-
-#section-3 {
-  margin-top: 25px;
+  margin-bottom: 18px;
 }
 
 .text-field-label {
@@ -435,18 +335,13 @@ h3 {
   cursor: pointer;
 }
 
-.section-divider {
-  height: 1px;
-  background-color: #000000;
-}
-
 .block-union-symbol {
   width: 11px;
   height: 28px;
   object-fit: contain;
 }
 
-.login-page{
+.login-page {
   background-color: #FFFFFF;
 }
 
@@ -455,7 +350,7 @@ h3 {
   margin-bottom: 35px;
 }
 
-.is-current{
+.is-current {
   border-bottom: 2px solid #ffffff;;
 }
 

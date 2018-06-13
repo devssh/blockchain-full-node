@@ -1,5 +1,4 @@
 import React from 'react';
-import {Col} from "react-bootstrap";
 import {request} from './reducer/request';
 import SubmitButton from "./SubmitButton";
 import TextField from "./TextField";
@@ -104,22 +103,20 @@ class CreateTransaction extends React.Component {
     render() {
         let {email} = this.props.state;
         return (
-            <form className={"form-view"} ref={"createContractForm"}>
+            <form className="create-form-view" ref={"createContractForm"}>
                 <div>
-                    <TextField label={"NAME"} placeholder={"SampleCode30"} onKeyUp={this.updateName} autoFocus/>
+                    <TextField label={"NAME"} placeholder={""} onKeyUp={this.updateName} autoFocus/>
                     <TextField label={"PRODUCT"} placeholder={""} onKeyUp={this.updateField1}
                                value={email === "forfive@gmail.com" ? "For Five Coffee Roasters" :
                                    email === "simonsips@gmail.com" ? "Simon Sips" : ""}/>
                     <TextField label={"DISCOUNT (In $)"} type={"number"} placeholder={""} onKeyUp={this.updateField2}/>
                     <TextField label={"PRIMARY EMAIL ADDRESS"} placeholder={""} onKeyUp={this.updateField3}/>
                     <TextField label={"ALTERNATE EMAIL ADDRESS"} placeholder={""} onKeyUp={this.updateField4}/>
-                    <div className="row">
-                        <div className="col-md-4 col-md-offset-3 text-field-label add-email-address">
-                            + Add email address
-                        </div>
+                    <div className="add-email-address">
+                        + Add email address
                     </div>
                     <div className="button-container">
-                        <SubmitButton className={"btn btn-primary create-coupan"} value={"Submit"}
+                        <SubmitButton className="btn btn-primary btn-submit-coupon" value={"Submit"}
                                       onClick={this.createTransaction}/>
                     </div>
                 </div>

@@ -62,7 +62,7 @@ class BlockView extends React.Component {
         return (
             <div>
                 <div>
-                    <div className="header">
+                    <div>
                         Blockchain Full Node
                         {
                             sessionToken && sessionToken !== "undefined" && <div className="logout-panel">

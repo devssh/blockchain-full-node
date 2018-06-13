@@ -119,7 +119,7 @@ class CompleteTransaction extends React.Component {
 
                     <TextField label={"Scan"} type="password" placeholder={"Scan information goes here..."}
                                onKeyUp={this.updateName}
-                               removeActive={false} autofocus={true}/>
+                               removeActive={false}/>
                     <div className="button-container">
                         <SubmitButton className={"btn btn-primary btn-redeem-coupon"} value={"Redeem Coupon"}
                                       onClick={this.createTransaction}/>
