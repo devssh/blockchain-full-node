@@ -15,8 +15,6 @@ class BlockView extends React.Component {
     }
 
     render() {
-        console.log("hello", this.props)
-        console.log("state", this.state)
         let reverse = (somestr) => {
             return somestr ? somestr.split("").reverse().join("") : null;
         };

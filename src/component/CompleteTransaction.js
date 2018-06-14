@@ -64,12 +64,11 @@ class CompleteTransaction extends React.Component {
                     transactionStateJSX =
                         <TransactionStatus className="success" imgsrc={success} label="Coupon is approved"/>;
                 } else if (data.complete === false) {
+                    transactionStateJSX = <TransactionStatus className="error" imgsrc={error}
+                                                             label="Something went wrong. Please try again later."/>;
+                } else if (data.complete.toLowerCase() === "doublespenddetected") {
                     transactionStateJSX = <TransactionStatus className="failure" imgsrc={failure}
                                                              label="Coupon has expired"/>;
-                } else if (data.complete.toLowerCase() === "doublespenddetected") {
-                    transactionStateJSX =
-                        <TransactionStatus className="error" imgsrc={error}
-                                           label="Something went wrong. Please try again later."/>;
                 }
                 this.setState({transactionStateJSX})
             });
